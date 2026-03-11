@@ -342,7 +342,7 @@ export default function App() {
               {/* Vending Slots */}
               <div className="flex flex-col p-3 gap-2 flex-1">
                 {/* Pack 1 */}
-                <button className="group w-full text-left bg-zinc-50 border-2 border-transparent p-3 shadow-sm hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
                     <Disc className="w-4 h-4 group-hover:animate-spin" />
