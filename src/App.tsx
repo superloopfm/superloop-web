@@ -158,9 +158,9 @@ export default function App() {
                     SYNTHETIC<br />DREAMS
                   </h2>
 
-                  <div className="mt-12 flex flex-col gap-1 font-mono text-sm tracking-widest uppercase">
-                    <div className="text-zinc-900 font-bold">Limited Edition of 100</div>
-                    <div className="text-zinc-500">Digital + Physical. Remix Week Pass Included.</div>
+                  <div className="mt-12 flex flex-col items-start gap-1 font-mono text-sm tracking-widest uppercase">
+                    <span className="bg-zinc-900 text-white font-bold px-3 py-1.5 leading-none">Limited Edition of 100</span>
+                    <span className="bg-zinc-900 text-zinc-300 px-3 py-1.5 leading-none">Digital + Physical. Remix Week Pass Included.</span>
                   </div>
                 </div>
 
