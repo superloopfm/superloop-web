@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -159,8 +159,8 @@ export default function App() {
                   </h2>
 
                   <div className="mt-12 flex flex-col items-start gap-1 font-mono text-sm tracking-widest uppercase">
-                    <span className="bg-zinc-900 text-white font-bold px-3 py-1.5 leading-none">Limited Edition of 100</span>
-                    <span className="bg-zinc-900 text-zinc-300 px-3 py-1.5 leading-none">Digital + Physical. Remix Week Pass Included.</span>
+                    <span className="bg-zinc-900 text-white font-bold px-3 py-1.5 leading-none">Only 100 Pressed.</span>
+                    <span className="bg-zinc-900 text-zinc-300 px-3 py-1.5 leading-none">Only 1 can be yours. Remix Week Pass Included.</span>
                   </div>
                 </div>
 
@@ -287,50 +287,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Block B: Product Showcase (Center-Right) */}
-            <div className="col-span-1 lg:col-span-3 border-r border-zinc-800 bg-zinc-950 p-6 relative overflow-hidden group">
-              {/* Dotted Grid BG */}
-              <div
-                className="absolute inset-0"
-                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
-              ></div>
-
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start">
-                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
-                    <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
-                  </div>
-                </div>
-
-                <div className="flex-1 flex items-center justify-center py-4">
-                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
-                  <div className="w-full relative">
-                    <video
-                      ref={videoRef}
-                      src="/videos/ronin-record.mp4"
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-contain"
-                    />
-                    {/* CORE_01 floating label */}
-                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
-                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
-                    "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Block C: Supply Depot */}
-            <div className="col-span-1 lg:col-span-4 flex flex-col bg-zinc-100 overflow-y-auto">
+            <div className="col-span-1 lg:col-span-4 border-r border-zinc-300 flex flex-col bg-zinc-100 overflow-y-auto">
               {/* Header */}
               <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
                 <div className="flex items-center gap-2">
@@ -405,6 +363,48 @@ export default function App() {
               </div>
             </div>
 
+            {/* Block B: Product Showcase (Right) */}
+            <div className="col-span-1 lg:col-span-3 bg-zinc-950 p-6 relative overflow-hidden group">
+              {/* Dotted Grid BG */}
+              <div
+                className="absolute inset-0"
+                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+              ></div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex justify-between items-start">
+                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
+                    <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
+                  </div>
+                </div>
+
+                <div className="flex-1 flex items-center justify-center py-4">
+                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
+                  <div className="w-full relative">
+                    <video
+                      ref={videoRef}
+                      src="/videos/ronin-record.mp4"
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                    {/* CORE_01 floating label */}
+                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
+                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
+                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </section>
@@ -424,98 +424,41 @@ export default function App() {
               </div>
             </div>
 
-            {/* COL 3: Remix Now header + specs + vending buttons */}
+            {/* COL 3: Remix Now header + inventory counter + Break The Loop */}
             <div className="lg:col-span-7 flex flex-col gap-6">
 
-              {/* Remix Now header + "Break The Loop" box side by side */}
+              {/* Remix Now header */}
               <div className="border-l-2 border-[#FF3300] pl-4">
-                <div className="flex items-start gap-6 mb-4">
-                  <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none">
-                    Remix<br />Now
-                  </h2>
-                  {/* "Break The Loop" orange callout — lifted up next to the title */}
-                  <div className="bg-[#FF3300] text-black p-4 shadow-[8px_8px_0px_white] flex-shrink-0">
-                    <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-70">SP SOUNDPACK</div>
-                    <h3 className="font-black text-2xl uppercase leading-none tracking-tighter">Break<br />The Loop</h3>
-                    <div className="font-mono text-[9px] mt-2 uppercase tracking-widest">VOL.1 // REMIX EDITION</div>
-                  </div>
+                <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                  Remix<br />Now
+                </h2>
+
+                {/* Live Inventory Counter */}
+                <div className="flex items-center gap-3 mb-8 bg-zinc-900 border border-zinc-800 p-3 w-fit">
+                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                  <span className="font-mono text-sm font-bold text-white tracking-widest">47 OF 100 RECORDS REMAINING</span>
                 </div>
-                <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm">
+
+                {/* "Break The Loop" email capture box */}
+                <div className="bg-[#FF3300] text-black p-6 shadow-[8px_8px_0px_white] max-w-md">
+                  <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-70">SP SOUNDPACK</div>
+                  <h3 className="font-black text-2xl uppercase leading-none tracking-tighter mb-2">Break<br />The Loop</h3>
+                  <div className="font-mono text-[9px] mb-4 uppercase tracking-widest">VOL.1 // REMIX EDITION</div>
+                  <input
+                    type="email"
+                    placeholder="YOUR EMAIL"
+                    className="w-full bg-black text-white font-mono text-xs px-3 py-2 mb-2 border-2 border-black placeholder:text-zinc-600 outline-none"
+                  />
+                  <button className="w-full bg-black text-white font-mono font-bold text-xs uppercase py-2 hover:bg-white hover:text-black transition-colors border-2 border-black">
+                    Claim Your Copy
+                  </button>
+                </div>
+
+                <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm mt-6">
                   <p>01 // DOWNLOAD STEMS<br />Format: WAV 24bit<br />Size: 2.4GB</p>
                   <p>02 // SUBMIT TRACK<br />Deadline: 14.10.24<br />BPM: 128-140</p>
                   <p>03 // WIN HARDWARE<br />Prize: Analog Heat<br />+2yr Subscription</p>
                   <p>04 // JUDGING<br />By: Dave Clarke<br />Criteria: Innovation</p>
-                </div>
-              </div>
-
-              {/* Available Packs vending list */}
-              <div className="flex flex-col">
-                <div className="flex justify-between items-end mb-3 border-b border-white/20 pb-1">
-                  <span className="font-mono text-[10px] text-[#FF3300] uppercase tracking-widest">Available_Packs</span>
-                  <span className="font-mono text-[10px] text-neutral-500">Credits: ∞</span>
-                </div>
-
-                <div className="space-y-3">
-                  {/* Pack A1 */}
-                  <button className="vending-btn w-full bg-neutral-900 border-2 border-neutral-800 p-4 rounded-none flex items-center justify-between group text-left shadow-[3px_3px_0px_white] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none hover:border-[#FF3300] transition-all">
-                    <div className="flex items-center gap-4">
-                      <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">A1</span>
-                      <div>
-                        <div className="font-bold text-sm uppercase tracking-tight text-white">Acid_Texture_Pack</div>
-                        <div className="font-mono text-[9px] text-neutral-500">303_WAVEFORMS // DISTORTION</div>
-                      </div>
-                    </div>
-                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
-                      <Download className="w-4 h-4" />
-                    </div>
-                  </button>
-
-                  {/* Pack B2 */}
-                  <button className="vending-btn w-full bg-neutral-900 border-2 border-neutral-800 p-4 rounded-none flex items-center justify-between group text-left shadow-[3px_3px_0px_white] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none hover:border-[#FF3300] transition-all">
-                    <div className="flex items-center gap-4">
-                      <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">B2</span>
-                      <div>
-                        <div className="font-bold text-sm uppercase tracking-tight text-white">Industrial_Kicks</div>
-                        <div className="font-mono text-[9px] text-neutral-500">HEAVY_IMPACT // LOW_END</div>
-                      </div>
-                    </div>
-                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
-                      <Download className="w-4 h-4" />
-                    </div>
-                  </button>
-
-                  {/* Pack C3 */}
-                  <button className="vending-btn w-full bg-neutral-900 border-2 border-neutral-800 p-4 rounded-none flex items-center justify-between group text-left shadow-[3px_3px_0px_white] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none hover:border-[#FF3300] transition-all">
-                    <div className="flex items-center gap-4">
-                      <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">C3</span>
-                      <div>
-                        <div className="font-bold text-sm uppercase tracking-tight text-white">Glitch_Vocals</div>
-                        <div className="font-mono text-[9px] text-neutral-500">CHOPPED // GRANULAR</div>
-                      </div>
-                    </div>
-                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
-                      <Download className="w-4 h-4" />
-                    </div>
-                  </button>
-
-                  {/* Pack D4 — locked */}
-                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between text-left opacity-50 cursor-not-allowed">
-                    <div className="flex items-center gap-4">
-                      <span className="font-mono text-xl font-bold text-neutral-600">D4</span>
-                      <div>
-                        <div className="font-bold text-sm uppercase tracking-tight text-neutral-500">Secret_Weapon</div>
-                        <div className="font-mono text-[9px] text-neutral-600">LOCKED_UNTIL_SUBMISSION</div>
-                      </div>
-                    </div>
-                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-800 bg-neutral-900 text-neutral-700">
-                      <Lock className="w-4 h-4" />
-                    </div>
-                  </button>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-dashed border-neutral-800 flex justify-between font-mono text-[9px] text-neutral-500">
-                  <span>SYS.ID: 884-21X</span>
-                  <span>STATUS: ONLINE</span>
                 </div>
               </div>
 
