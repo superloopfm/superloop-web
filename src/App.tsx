@@ -34,12 +34,9 @@ export default function App() {
         <section className="relative w-full h-full grid grid-cols-1 lg:grid-cols-12 grid-rows-[auto_auto_1fr] gap-0">
 
           {/* Top Navigation / Header Area */}
-          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-3 px-6 flex justify-between items-start relative bg-zinc-50/80 backdrop-blur-sm">
-            <div className="flex flex-col gap-1">
+          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-1.5 px-6 flex justify-between items-center relative bg-zinc-50/80 backdrop-blur-sm">
+            <div>
               <img src="/logos/superloop-text-bl-1.png" alt="Superloop.fm" className="h-6 md:h-10 object-contain" />
-              <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mt-2 max-w-[20rem]">
-                The definitive guide to modular synthesis and analog waveform generation.
-              </p>
             </div>
 
             {/* Top Right Badge */}
@@ -151,7 +148,7 @@ export default function App() {
           <div className="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh]">
 
             {/* Block A: Remix Week (Left) — bleeds into left margin */}
-            <div className="col-span-1 lg:col-span-4 border-r border-zinc-300 -ml-[3rem] md:-ml-[4rem] pl-[3rem] md:pl-[4rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
+            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[4rem] pl-[3rem] md:pl-[4rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
               <div className="select-none">
                 {/* Glitch sliced typography */}
                 <div className="glitch-wrapper mb-6">
@@ -166,6 +163,41 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Remix Image with overlay */}
+              <div className="relative mt-4 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop"
+                  alt="Remix Laboratory"
+                  className="w-full h-48 md:h-64 object-cover grayscale contrast-125 brightness-75"
+                />
+                {/* Dashed border overlay */}
+                <div className="absolute inset-3 border border-dashed border-white/30 pointer-events-none"></div>
+                {/* Grid overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-20"
+                  style={{
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
+                    backgroundSize: '24px 24px',
+                  }}
+                ></div>
+                {/* Label */}
+                <div className="absolute bottom-3 left-3 font-mono text-[9px] text-white/50 uppercase tracking-widest">RMX_LAB // INPUT_FEED</div>
+              </div>
+
+              {/* Skeuomorphic Slider */}
+              <div className="w-full h-8 flex items-center mt-4">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  defaultValue="0"
+                  className="w-full appearance-none bg-zinc-800 h-1 rounded outline-none cursor-pointer"
+                  style={{
+                    accentColor: '#FF3300',
+                  }}
+                />
+              </div>
+
               <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
                 <span className="font-mono text-xs text-neutral-500 uppercase tracking-wider">Remix Section Below</span>
                 <ArrowDownRight className="w-5 h-5 text-[#FF3300]" />
@@ -173,7 +205,7 @@ export default function App() {
             </div>
 
             {/* Block B: Product Showcase (Center-Right) */}
-            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 p-6 relative overflow-hidden group">
+            <div className="col-span-1 lg:col-span-3 border-r border-zinc-300 p-6 relative overflow-hidden group">
               {/* Dotted Grid BG */}
               <div
                 className="absolute inset-0"
@@ -213,7 +245,7 @@ export default function App() {
             </div>
 
             {/* Block C: Supply Depot */}
-            <div className="col-span-1 lg:col-span-3 flex flex-col bg-zinc-100 overflow-y-auto">
+            <div className="col-span-1 lg:col-span-4 flex flex-col bg-zinc-100 overflow-y-auto">
               {/* Header */}
               <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
                 <div className="flex items-center gap-2">
@@ -296,88 +328,120 @@ export default function App() {
         <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-16 px-8 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-            {/* Left: Remix Now header + specs */}
-            <div className="lg:col-span-5 border-l-2 border-[#FF3300] pl-4">
-              <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
-                Remix<br />Now
-              </h2>
-              <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm">
-                <p>01 // DOWNLOAD STEMS<br />Format: WAV 24bit<br />Size: 2.4GB</p>
-                <p>02 // SUBMIT TRACK<br />Deadline: 14.10.24<br />BPM: 128-140</p>
-                <p>03 // WIN HARDWARE<br />Prize: Analog Heat<br />+2yr Subscription</p>
-                <p>04 // JUDGING<br />By: Dave Clarke<br />Criteria: Innovation</p>
+            {/* COL 2: Glitch Image + "Break The Loop" box */}
+            <div className="lg:col-span-5 flex flex-col gap-0">
+              <div className="relative aspect-[3/4] border border-white/20 bg-[#111] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?q=80&w=1000&auto=format&fit=crop"
+                  alt="Break The Loop"
+                  className="w-full h-full object-cover grayscale contrast-125 brightness-75"
+                />
+                {/* Grid overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-20"
+                  style={{
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                    backgroundSize: '30px 30px',
+                  }}
+                ></div>
+                {/* Dashed inner border */}
+                <div className="absolute inset-4 border border-dashed border-white/20 pointer-events-none"></div>
+                {/* "Break The Loop" orange callout */}
+                <div className="absolute bottom-6 left-6 right-6 bg-[#FF3300] text-black p-4 shadow-[8px_8px_0px_white]">
+                  <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-70">SP SOUNDPACK</div>
+                  <h3 className="font-black text-2xl uppercase leading-none tracking-tighter">Break<br />The Loop</h3>
+                  <div className="font-mono text-[9px] mt-2 uppercase tracking-widest">VOL.1 // REMIX EDITION</div>
+                </div>
               </div>
             </div>
 
-            {/* Right: Available Packs vending list */}
-            <div className="lg:col-span-7 flex flex-col">
-              <div className="flex justify-between items-end mb-3 border-b border-white/20 pb-1">
-                <span className="font-mono text-[10px] text-[#FF3300] uppercase tracking-widest">Available_Packs</span>
-                <span className="font-mono text-[10px] text-neutral-500">Credits: ∞</span>
+            {/* COL 3: Remix Now header + specs + vending buttons */}
+            <div className="lg:col-span-7 flex flex-col gap-6">
+
+              {/* Remix Now header + specs */}
+              <div className="border-l-2 border-[#FF3300] pl-4">
+                <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                  Remix<br />Now
+                </h2>
+                <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm">
+                  <p>01 // DOWNLOAD STEMS<br />Format: WAV 24bit<br />Size: 2.4GB</p>
+                  <p>02 // SUBMIT TRACK<br />Deadline: 14.10.24<br />BPM: 128-140</p>
+                  <p>03 // WIN HARDWARE<br />Prize: Analog Heat<br />+2yr Subscription</p>
+                  <p>04 // JUDGING<br />By: Dave Clarke<br />Criteria: Innovation</p>
+                </div>
               </div>
 
-              <div className="space-y-3">
-                {/* Pack A1 */}
-                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">A1</span>
-                    <div>
-                      <div className="font-bold text-sm uppercase tracking-tight text-white">Acid_Texture_Pack</div>
-                      <div className="font-mono text-[9px] text-neutral-500">303_WAVEFORMS // DISTORTION</div>
-                    </div>
-                  </div>
-                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
-                    <Download className="w-4 h-4" />
-                  </div>
-                </button>
+              {/* Available Packs vending list */}
+              <div className="flex flex-col">
+                <div className="flex justify-between items-end mb-3 border-b border-white/20 pb-1">
+                  <span className="font-mono text-[10px] text-[#FF3300] uppercase tracking-widest">Available_Packs</span>
+                  <span className="font-mono text-[10px] text-neutral-500">Credits: ∞</span>
+                </div>
 
-                {/* Pack B2 */}
-                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">B2</span>
-                    <div>
-                      <div className="font-bold text-sm uppercase tracking-tight text-white">Industrial_Kicks</div>
-                      <div className="font-mono text-[9px] text-neutral-500">HEAVY_IMPACT // LOW_END</div>
+                <div className="space-y-3">
+                  {/* Pack A1 */}
+                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">A1</span>
+                      <div>
+                        <div className="font-bold text-sm uppercase tracking-tight text-white">Acid_Texture_Pack</div>
+                        <div className="font-mono text-[9px] text-neutral-500">303_WAVEFORMS // DISTORTION</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
-                    <Download className="w-4 h-4" />
-                  </div>
-                </button>
+                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
+                      <Download className="w-4 h-4" />
+                    </div>
+                  </button>
 
-                {/* Pack C3 */}
-                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">C3</span>
-                    <div>
-                      <div className="font-bold text-sm uppercase tracking-tight text-white">Glitch_Vocals</div>
-                      <div className="font-mono text-[9px] text-neutral-500">CHOPPED // GRANULAR</div>
+                  {/* Pack B2 */}
+                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">B2</span>
+                      <div>
+                        <div className="font-bold text-sm uppercase tracking-tight text-white">Industrial_Kicks</div>
+                        <div className="font-mono text-[9px] text-neutral-500">HEAVY_IMPACT // LOW_END</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
-                    <Download className="w-4 h-4" />
-                  </div>
-                </button>
+                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
+                      <Download className="w-4 h-4" />
+                    </div>
+                  </button>
 
-                {/* Pack D4 — locked */}
-                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between text-left opacity-50 cursor-not-allowed">
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-xl font-bold text-neutral-600">D4</span>
-                    <div>
-                      <div className="font-bold text-sm uppercase tracking-tight text-neutral-500">Secret_Weapon</div>
-                      <div className="font-mono text-[9px] text-neutral-600">LOCKED_UNTIL_SUBMISSION</div>
+                  {/* Pack C3 */}
+                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">C3</span>
+                      <div>
+                        <div className="font-bold text-sm uppercase tracking-tight text-white">Glitch_Vocals</div>
+                        <div className="font-mono text-[9px] text-neutral-500">CHOPPED // GRANULAR</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-800 bg-neutral-900 text-neutral-700">
-                    <Lock className="w-4 h-4" />
-                  </div>
-                </button>
+                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
+                      <Download className="w-4 h-4" />
+                    </div>
+                  </button>
+
+                  {/* Pack D4 — locked */}
+                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between text-left opacity-50 cursor-not-allowed">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-xl font-bold text-neutral-600">D4</span>
+                      <div>
+                        <div className="font-bold text-sm uppercase tracking-tight text-neutral-500">Secret_Weapon</div>
+                        <div className="font-mono text-[9px] text-neutral-600">LOCKED_UNTIL_SUBMISSION</div>
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 flex items-center justify-center border border-neutral-800 bg-neutral-900 text-neutral-700">
+                      <Lock className="w-4 h-4" />
+                    </div>
+                  </button>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-dashed border-neutral-800 flex justify-between font-mono text-[9px] text-neutral-500">
+                  <span>SYS.ID: 884-21X</span>
+                  <span>STATUS: ONLINE</span>
+                </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-dashed border-neutral-800 flex justify-between font-mono text-[9px] text-neutral-500">
-                <span>SYS.ID: 884-21X</span>
-                <span>STATUS: ONLINE</span>
-              </div>
             </div>
 
           </div>

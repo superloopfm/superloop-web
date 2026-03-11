@@ -115,7 +115,7 @@
   }
   .glitch-base {
     position: relative;
-    font-size: clamp(3rem, 8vw, 9vw);
+    font-size: clamp(1.5rem, 4vw, 5vw);
     line-height: 0.8;
     font-weight: 900;
     letter-spacing: -0.05em;
@@ -123,7 +123,7 @@
   }
   .glitch-layer {
     display: block;
-    font-size: clamp(3rem, 8vw, 9vw);
+    font-size: clamp(1.5rem, 4vw, 5vw);
     line-height: 0.8;
     font-weight: 900;
     letter-spacing: -0.05em;
