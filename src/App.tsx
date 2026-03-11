@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Package, Disc3, Disc, PlayCircle, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -170,19 +170,9 @@ export default function App() {
                     className="relative bg-[#0a0a0a] border border-white/20 p-3 shadow-[0_0_80px_rgba(0,255,65,0.2)] group-hover:border-[#00FF41] cursor-pointer"
                     onClick={() => setIsSyntheticLit(!isSyntheticLit)}
                   >
-                    <img
-                      src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop"
-                      className="w-full aspect-square object-cover brightness-75 hover:brightness-110 transition-all duration-300"
-                      alt="Synthetic Dreams cover"
-                    />
-                    <div className="absolute top-6 right-6 animate-[spin_20s_linear_infinite]">
-                      <Disc className="w-14 h-14 text-white opacity-50" />
-                    </div>
-                    <div className="mt-3 flex justify-between items-center px-3">
-                      <div className="h-1.5 w-32 bg-white/10 overflow-hidden">
-                        <div className="h-full bg-[#00FF41] w-[80%] animate-pulse"></div>
-                      </div>
-                      <PlayCircle className="w-8 h-8 text-white hover:text-[#00FF41] cursor-pointer transition-colors" />
+                    <div className="aspect-square w-full relative">
+                      <img src="/images/dreamwarden-record.jpg" className="absolute inset-0 w-full h-full object-contain z-10 brightness-75 hover:brightness-110 transition-all duration-300" alt="Record" />
+                      <img src="/images/dreamwarden-spine.png" className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none" alt="Spine Overlay" />
                     </div>
                   </div>
                 </div>
@@ -298,16 +288,16 @@ export default function App() {
             </div>
 
             {/* Block B: Product Showcase (Center-Right) */}
-            <div className="col-span-1 lg:col-span-3 border-r border-zinc-300 p-6 relative overflow-hidden group">
+            <div className="col-span-1 lg:col-span-3 border-r border-zinc-800 bg-zinc-950 p-6 relative overflow-hidden group">
               {/* Dotted Grid BG */}
               <div
                 className="absolute inset-0"
-                style={{ backgroundImage: 'radial-gradient(#d4d4d8 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
               ></div>
 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex justify-between items-start">
-                  <div className="bg-white border border-zinc-200 px-3 py-1 shadow-sm">
+                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
                     <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
                   </div>
                 </div>
@@ -330,9 +320,9 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="bg-white/90 backdrop-blur border border-zinc-200 p-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1">Hands-On Verdict</h4>
-                  <p className="text-xs text-zinc-500 leading-relaxed">
+                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
+                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
                     "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
                   </p>
                 </div>
