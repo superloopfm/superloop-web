@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -117,12 +117,12 @@ export default function App() {
             {/* Left-Side Background Video */}
             <div className="absolute left-0 top-0 w-[45%] h-full overflow-hidden pointer-events-none z-0">
               <video
-                src="/videos/ronin-record.mp4"
+                src="/videos/hero-bg.mp4"
                 muted
                 loop
                 autoPlay
                 playsInline
-                className="w-full h-full object-cover opacity-30 grayscale"
+                className="w-full h-full object-cover opacity-40"
               />
               {/* Grid / Dot Filter Overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
@@ -350,8 +350,8 @@ export default function App() {
               {/* Header */}
               <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
                 <div className="flex items-center gap-2">
-                  <Package className="w-4 h-4" />
-                  <span className="font-mono text-sm font-bold uppercase tracking-wide">Supply_Depot</span>
+                  <Disc3 className="w-4 h-4" />
+                  <span className="font-mono text-sm font-bold uppercase tracking-wide">Soundpack_Content</span>
                 </div>
                 <span className="text-[10px] font-mono border border-white/30 px-1">V.4.0</span>
               </div>
@@ -575,6 +575,11 @@ export default function App() {
         </div>
 
       </main>
+
+      {/* Footer */}
+      <footer className="w-full bg-zinc-950 text-zinc-500 py-6 text-center text-xs font-mono uppercase tracking-widest border-t border-zinc-900">
+        © {new Date().getFullYear()} Superloop.fm — All Rights Reserved.
+      </footer>
 
     </body>
   );
