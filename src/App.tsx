@@ -1,11 +1,22 @@
-import { useState, useRef } from 'react';
-import { QrCode, Activity, Star, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { QrCode, Activity, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
   const [pad1, setPad1] = useState(false);
   const [pad2, setPad2] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    if (isPlaying) {
+      vid.play();
+    } else {
+      vid.pause();
+    }
+  }, [isPlaying]);
   return (
     <body className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
 
@@ -310,26 +321,25 @@ export default function App() {
                   <div className="bg-white border border-zinc-200 px-3 py-1 shadow-sm">
                     <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
                   </div>
-                  <Star className="w-5 h-5 fill-zinc-900 text-zinc-900" />
                 </div>
 
-                <div className="flex-1 flex items-center justify-center py-8">
-                  {/* CORE_01 Record Display */}
-                  <div className="w-48 h-48 border border-zinc-900 bg-[#0a0a0a] shadow-[8px_8px_0px_0px_rgba(24,24,27,1)] flex items-center justify-center relative overflow-hidden">
+                <div className="flex-1 flex items-center justify-center py-4">
+                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
+                  <div className="w-full relative">
                     <video
                       ref={videoRef}
                       src="/videos/ronin-record.mp4"
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-cover rounded-full"
+                      className="w-full h-full object-contain"
                     />
                     {/* CORE_01 floating label */}
                     <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
                       <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
                     </div>
                     {/* Annotation */}
-                    <div className="absolute -right-4 -top-4 w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-mono border-2 border-white">
+                    <div className="absolute -right-2 -top-2 w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-mono border-2 border-white">
                       A+
                     </div>
                   </div>
@@ -358,7 +368,7 @@ export default function App() {
               {/* Vending Slots */}
               <div className="flex flex-col p-3 gap-2 flex-1">
                 {/* Pack 1 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
                     <Disc className="w-4 h-4 group-hover:animate-spin" />
@@ -371,7 +381,7 @@ export default function App() {
                 </button>
 
                 {/* Pack 2 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
                     <Mic2 className="w-4 h-4" />
@@ -384,7 +394,7 @@ export default function App() {
                 </button>
 
                 {/* Pack 3 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
                     <Zap className="w-4 h-4" />
@@ -397,7 +407,7 @@ export default function App() {
                 </button>
 
                 {/* Pack 4 — locked */}
-                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
+                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed">
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-zinc-400 text-white text-[9px] px-1 font-mono">C-09</span>
                     <Lock className="w-4 h-4" />
