@@ -151,6 +151,44 @@
     transition: transform 0.05s linear;
   }
 
+  /* Fader thumb styling */
+  .fader-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 22px;
+    background: linear-gradient(180deg, #555 0%, #2a2a2a 100%);
+    border: 1px solid #666;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+    cursor: grab;
+  }
+  .fader-input::-webkit-slider-thumb:active {
+    cursor: grabbing;
+  }
+  .fader-input::-moz-range-thumb {
+    width: 12px;
+    height: 22px;
+    background: linear-gradient(180deg, #555 0%, #2a2a2a 100%);
+    border: 1px solid #666;
+    border-radius: 2px;
+    cursor: grab;
+  }
+
+  /* Pad 1: invert the remix image aggressively */
+  .remix-img-pad {
+    filter:
+      hue-rotate(calc(180deg * var(--mix, 0)))
+      contrast(calc(100% + 50% * var(--mix, 0)))
+      grayscale(calc(1 - 1 * var(--mix, 0)))
+      invert(calc(1 * var(--pad1, 0)));
+  }
+
+  /* Pad 2: scale the glitch typography */
+  .glitch-wrapper-pad2 {
+    transform: scale(calc(1 + 0.2 * var(--pad2, 0)));
+    transition: transform 0.05s linear;
+  }
+
   .remix-week-slice {
     position: relative;
     display: inline-block;

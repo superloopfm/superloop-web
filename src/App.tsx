@@ -3,6 +3,8 @@ import { QrCode, Activity, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, 
 
 export default function App() {
   const [mix, setMix] = useState(0);
+  const [pad1, setPad1] = useState(false);
+  const [pad2, setPad2] = useState(false);
   return (
     <body className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
 
@@ -13,7 +15,7 @@ export default function App() {
       </div>
 
       {/* Main Grid Container — no max-w constraint, extends to ultrawide edges */}
-      <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[16rem_1fr_4rem] border-x border-zinc-300 bg-transparent" style={{ '--mix': mix / 100 } as React.CSSProperties}>
+      <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[14rem_1fr_4rem] border-x border-zinc-300 bg-transparent" style={{ '--mix': mix / 100, '--pad1': pad1 ? 1 : 0, '--pad2': pad2 ? 1 : 0 } as React.CSSProperties}>
 
         {/* LEFT MARGIN: Navigation Sidebar */}
         <aside className="relative border-r border-zinc-300 h-full hidden md:flex flex-col items-center px-2 py-8 bg-zinc-50/50 backdrop-blur-sm">
@@ -55,19 +57,23 @@ export default function App() {
             {/* Divider */}
             <div className="w-8 h-px bg-zinc-200"></div>
 
-            {/* Leaderboard — Locked */}
-            <div className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed">
-              <Lock className="w-3 h-3 text-zinc-500 flex-shrink-0" />
-              <span className="font-mono text-sm uppercase font-bold tracking-widest text-zinc-500">Leaderboard</span>
-              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1">BETA</span>
-            </div>
+            {/* Leaderboard */}
+            <a
+              href="#"
+              className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+            >
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              Leaderboard
+            </a>
 
-            {/* Remix Trees — Locked */}
-            <div className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed">
-              <Lock className="w-3 h-3 text-zinc-500 flex-shrink-0" />
-              <span className="font-mono text-sm uppercase font-bold tracking-widest text-zinc-500">Remix Trees</span>
-              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1">BETA</span>
-            </div>
+            {/* Remix Trees */}
+            <a
+              href="#"
+              className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+            >
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              Remix Trees
+            </a>
           </nav>
         </aside>
 
@@ -94,7 +100,7 @@ export default function App() {
           </header>
 
           {/* ROW 1: Massive Title & Sub-grid */}
-          <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[60vh] border-b border-zinc-300">
+          <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[50vh] border-b border-zinc-300">
 
             {/* Background Wireframe Render */}
             <div className="absolute -right-20 top-0 w-3/4 h-full opacity-10 pointer-events-none">
@@ -189,10 +195,10 @@ export default function App() {
           <div className="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh]">
 
             {/* Block A: Remix Week (Left) — bleeds into left margin */}
-            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[16rem] pl-[3rem] md:pl-[16rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
+            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[14rem] pl-[3rem] md:pl-[14rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
               <div className="select-none">
                 {/* Glitch sliced typography */}
-                <div className="glitch-wrapper mb-6">
+                <div className="glitch-wrapper glitch-wrapper-pad2 mb-6">
                   <div className="glitch-base">REMIX_WEEK</div>
                   <div className="glitch-layer slice-top">REMIX_WEEK</div>
                   <div className="glitch-layer slice-mid">REMIX_WEEK</div>
@@ -209,10 +215,7 @@ export default function App() {
                 <img
                   src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop"
                   alt="Remix Laboratory"
-                  className="w-full h-48 md:h-64 object-cover"
-                  style={{
-                    filter: `hue-rotate(calc(180deg * var(--mix))) contrast(calc(100% + 50% * var(--mix))) grayscale(calc(1 - 1 * var(--mix)))`,
-                  }}
+                  className="w-full h-48 md:h-64 object-cover remix-img-pad"
                 />
                 {/* Dashed border overlay */}
                 <div className="absolute inset-3 border border-dashed border-white/30 pointer-events-none"></div>
@@ -228,19 +231,63 @@ export default function App() {
                 <div className="absolute bottom-3 left-3 font-mono text-[9px] text-white/50 uppercase tracking-widest">RMX_LAB // INPUT_FEED</div>
               </div>
 
-              {/* Skeuomorphic Slider */}
-              <div className="w-full h-8 flex items-center mt-4">
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={mix}
-                  onChange={(e) => setMix(Number(e.target.value))}
-                  className="w-full appearance-none bg-zinc-800 h-1 rounded outline-none cursor-pointer"
-                  style={{
-                    accentColor: '#FF3300',
-                  }}
-                />
+              {/* Hardware Controls */}
+              <div className="flex items-center gap-4 mt-4">
+
+                {/* Fader — short horizontal DJ-style */}
+                <div className="flex flex-col items-start gap-1">
+                  <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">MIX</span>
+                  <div className="relative flex items-center w-28 h-6 bg-zinc-900 border border-zinc-700 rounded-sm shadow-inner">
+                    <div className="absolute inset-y-0 left-0 right-0 flex items-center px-1">
+                      <div className="w-full h-px bg-zinc-600"></div>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={mix}
+                      onChange={(e) => setMix(Number(e.target.value))}
+                      className="relative w-full appearance-none bg-transparent h-6 outline-none cursor-pointer fader-input"
+                    />
+                  </div>
+                </div>
+
+                {/* MPC Pads */}
+                <div className="flex flex-col items-start gap-1">
+                  <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">PADS</span>
+                  <div className="flex gap-2">
+                    <button
+                      className="w-12 h-12 rounded bg-zinc-800 border-b-4 border-zinc-900 active:border-b-0 active:translate-y-1 shadow-inner transition-all select-none"
+                      style={{ boxShadow: pad1 ? 'inset 0 2px 6px rgba(255,51,0,0.6)' : 'inset 0 2px 4px rgba(0,0,0,0.8)' }}
+                      onMouseDown={() => setPad1(true)}
+                      onMouseUp={() => setPad1(false)}
+                      onMouseLeave={() => setPad1(false)}
+                    >
+                      <span className="font-mono text-[8px] text-zinc-500">A1</span>
+                    </button>
+                    <button
+                      className="w-12 h-12 rounded bg-zinc-800 border-b-4 border-zinc-900 active:border-b-0 active:translate-y-1 shadow-inner transition-all select-none"
+                      style={{ boxShadow: pad2 ? 'inset 0 2px 6px rgba(0,255,65,0.5)' : 'inset 0 2px 4px rgba(0,0,0,0.8)' }}
+                      onMouseDown={() => setPad2(true)}
+                      onMouseUp={() => setPad2(false)}
+                      onMouseLeave={() => setPad2(false)}
+                    >
+                      <span className="font-mono text-[8px] text-zinc-500">A2</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Knob */}
+                <div className="flex flex-col items-center gap-1">
+                  <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">GAIN</span>
+                  <div
+                    className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-600 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8),0_1px_0_rgba(255,255,255,0.05)] relative flex items-center justify-center"
+                    style={{ transform: `rotate(calc(-140deg + 2.8deg * ${mix}))` }}
+                  >
+                    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-0.5 h-2.5 bg-[#FF3300] rounded-full"></div>
+                  </div>
+                </div>
+
               </div>
 
               <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
