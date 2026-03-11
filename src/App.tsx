@@ -1,4 +1,4 @@
-import { Aperture, QrCode, Activity, FileText, ArrowRight, Star, Cpu, ArrowUpRight, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle } from 'lucide-react';
+import { Aperture, QrCode, Activity, FileText, ArrowRight, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock } from 'lucide-react';
 
 export default function App() {
   return (
@@ -34,10 +34,10 @@ export default function App() {
         <section className="relative w-full h-full grid grid-cols-1 lg:grid-cols-12 grid-rows-[auto_auto_1fr] gap-0">
 
           {/* Top Navigation / Header Area */}
-          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 p-6 flex justify-between items-start relative bg-zinc-50/80 backdrop-blur-sm">
+          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-3 px-6 flex justify-between items-start relative bg-zinc-50/80 backdrop-blur-sm">
             <div className="flex flex-col gap-1">
               <h1 className="font-mono text-4xl md:text-6xl tracking-tighter leading-none uppercase text-zinc-900">
-                Signal<span className="text-zinc-400">/</span>Flow
+                SUPERLOOP.FM
               </h1>
               <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mt-2 max-w-[20rem]">
                 The definitive guide to modular synthesis and analog waveform generation.
@@ -72,24 +72,6 @@ export default function App() {
               </svg>
             </div>
 
-            {/* Technical Image */}
-            <div className="absolute inset-0 z-0 flex items-center justify-center lg:justify-end lg:pr-24 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop"
-                alt="Modular Synth"
-                className="h-[120%] w-auto object-cover grayscale contrast-[1.25] brightness-90 mix-blend-multiply opacity-90 transform rotate-3 translate-x-12"
-              />
-
-              {/* SVG Annotation Lines */}
-              <svg className="absolute inset-0 w-full h-full z-20 pointer-events-none">
-                <line x1="60%" y1="40%" x2="75%" y2="25%" stroke="black" strokeWidth="1" />
-                <circle cx="60%" cy="40%" r="4" fill="white" stroke="black" strokeWidth="2" />
-                <text x="76%" y="24%" className="text-[10px] font-mono fill-zinc-900 uppercase">Oscillator Bank A</text>
-                <line x1="45%" y1="60%" x2="30%" y2="75%" stroke="black" strokeWidth="1" />
-                <circle cx="45%" cy="60%" r="4" fill="white" stroke="black" strokeWidth="2" />
-              </svg>
-            </div>
-
             {/* OVERSIZED TYPOGRAPHY LAYER */}
             <div className="relative z-10 w-full h-full flex flex-col justify-center px-6 lg:px-12 pointer-events-none">
               <h2 className="text-[15vw] leading-[0.8] font-mono font-semibold tracking-tighter text-zinc-900 mix-blend-hard-light opacity-90">
@@ -100,53 +82,53 @@ export default function App() {
               </h2>
             </div>
 
-            {/* #1 TRACK: SYNTHETIC DREAMS — injected from algo 2.html */}
-            <div className="absolute bottom-6 right-6 lg:right-12 z-30 w-full max-w-[580px] group">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-end">
+            {/* #1 TRACK: SYNTHETIC DREAMS — upscaled centerpiece */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] lg:w-[60%] lg:pr-12 z-30 group px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 {/* Left: Text block */}
-                <div className="lg:col-span-8">
-                  <div className="flex items-baseline gap-4 mb-3">
+                <div className="lg:col-span-7">
+                  <div className="flex items-baseline gap-4 mb-4">
                     <div className="bg-[#FF5F00] text-black font-mono text-xs font-bold px-3 py-1 uppercase rotate-1 select-none">
                       Current Reign
                     </div>
                   </div>
 
-                  <h2 className="text-[8vw] lg:text-[4vw] leading-[0.85] font-black text-white tracking-tighter mix-blend-difference mb-4 cursor-pointer hover:text-[#00FF41] transition-colors">
+                  <h2 className="text-[12vw] lg:text-[7vw] leading-[0.85] font-black text-white tracking-tighter mix-blend-difference mb-6 cursor-pointer hover:text-[#00FF41] transition-colors">
                     SYNTHETIC<br />DREAMS
                   </h2>
 
-                  <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-white/60 bg-black/70 backdrop-blur-md p-3 border-l-2 border-[#00FF41]">
+                  <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-white/60 bg-black/70 backdrop-blur-md p-4 border-l-2 border-[#00FF41]">
                     <div className="flex items-center gap-2">
-                      <User className="w-3 h-3 text-[#00FF41]" />
+                      <User className="w-4 h-4 text-[#00FF41]" />
                       <span className="text-white">ARTIST:</span> NEON_VIOLET
                     </div>
                     <div className="flex items-center gap-2">
-                      <BarChart2 className="w-3 h-3 text-[#00FF41]" />
+                      <BarChart2 className="w-4 h-4 text-[#00FF41]" />
                       <span className="text-white">STREAMS:</span> 4,291,002
                     </div>
                     <div className="flex items-center gap-2">
-                      <TrendingUp className="w-3 h-3 text-[#00FF41]" />
+                      <TrendingUp className="w-4 h-4 text-[#00FF41]" />
                       <span className="text-[#00FF41]">+142%</span> VELOCITY
                     </div>
                   </div>
                 </div>
 
-                {/* Right: 3D tilt card */}
-                <div className="lg:col-span-4">
-                  <div className="relative bg-[#0a0a0a] border border-white/20 p-2 transition-transform duration-700 [transform:rotateY(12deg)] hover:[transform:rotateY(0deg)] shadow-[0_0_50px_rgba(0,255,65,0.1)] group-hover:border-[#00FF41]">
+                {/* Right: 3D tilt card — massive */}
+                <div className="lg:col-span-5">
+                  <div className="relative bg-[#0a0a0a] border border-white/20 p-3 transition-transform duration-700 [transform:rotateY(12deg)] hover:[transform:rotateY(0deg)] shadow-[0_0_80px_rgba(0,255,65,0.2)] group-hover:border-[#00FF41]">
                     <img
                       src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop"
                       className="w-full aspect-square object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
                       alt="Synthetic Dreams cover"
                     />
-                    <div className="absolute top-4 right-4 animate-[spin_20s_linear_infinite]">
-                      <Disc className="w-8 h-8 text-white opacity-50" />
+                    <div className="absolute top-6 right-6 animate-[spin_20s_linear_infinite]">
+                      <Disc className="w-14 h-14 text-white opacity-50" />
                     </div>
-                    <div className="mt-2 flex justify-between items-center px-2">
-                      <div className="h-1 w-20 bg-white/10 overflow-hidden">
+                    <div className="mt-3 flex justify-between items-center px-3">
+                      <div className="h-1.5 w-32 bg-white/10 overflow-hidden">
                         <div className="h-full bg-[#00FF41] w-[80%] animate-pulse"></div>
                       </div>
-                      <PlayCircle className="w-5 h-5 text-white hover:text-[#00FF41] cursor-pointer transition-colors" />
+                      <PlayCircle className="w-8 h-8 text-white hover:text-[#00FF41] cursor-pointer transition-colors" />
                     </div>
                   </div>
                 </div>
@@ -244,38 +226,78 @@ export default function App() {
               </div>
             </div>
 
-            {/* Block C: List / Index (Right) */}
-            <div className="col-span-1 lg:col-span-3 p-0 flex flex-col bg-zinc-900 text-zinc-100">
-              <div className="p-4 border-b border-zinc-800">
-                <span className="text-xs font-mono text-zinc-400 uppercase tracking-widest">In This Issue</span>
+            {/* Block C: Supply Depot */}
+            <div className="col-span-1 lg:col-span-3 flex flex-col bg-zinc-100 overflow-y-auto">
+              {/* Header */}
+              <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
+                <div className="flex items-center gap-2">
+                  <Package className="w-4 h-4" />
+                  <span className="font-mono text-sm font-bold uppercase tracking-wide">Supply_Depot</span>
+                </div>
+                <span className="text-[10px] font-mono border border-white/30 px-1">V.4.0</span>
               </div>
-              <ul className="flex-1 overflow-hidden">
-                <li className="group border-b border-zinc-800 p-4 hover:bg-zinc-800 transition-colors cursor-pointer flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-zinc-500">01</span>
-                  <div>
-                    <h5 className="font-semibold text-sm leading-tight group-hover:underline decoration-zinc-500 underline-offset-4">Collecting Atari</h5>
-                    <p className="text-[10px] text-zinc-400 mt-1 uppercase">Ten Key Games</p>
+
+              {/* Vending Slots */}
+              <div className="flex flex-col p-3 gap-2 flex-1">
+                {/* Pack 1 */}
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
+                    <Disc className="w-4 h-4 group-hover:animate-spin" />
                   </div>
-                </li>
-                <li className="group border-b border-zinc-800 p-4 hover:bg-zinc-800 transition-colors cursor-pointer flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-zinc-500">02</span>
-                  <div>
-                    <h5 className="font-semibold text-sm leading-tight group-hover:underline decoration-zinc-500 underline-offset-4">Shadow of the Beast</h5>
-                    <p className="text-[10px] text-zinc-400 mt-1 uppercase">Retrospective</p>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">170BPM / DISTORTED</span>
+                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
                   </div>
-                </li>
-                <li className="group border-b border-zinc-800 p-4 hover:bg-zinc-800 transition-colors cursor-pointer flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-zinc-500">03</span>
-                  <div>
-                    <h5 className="font-semibold text-sm leading-tight group-hover:underline decoration-zinc-500 underline-offset-4">Turrican II</h5>
-                    <p className="text-[10px] text-zinc-400 mt-1 uppercase">Soundtrack Analysis</p>
+                </button>
+
+                {/* Pack 2 */}
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
+                    <Mic2 className="w-4 h-4" />
                   </div>
-                </li>
-              </ul>
-              <div className="p-4 mt-auto">
-                <button className="w-full py-3 bg-zinc-100 text-zinc-900 font-mono text-xs uppercase font-semibold hover:bg-white transition-colors flex items-center justify-center gap-2">
-                  <span>Subscribe</span>
-                  <ArrowUpRight className="w-3 h-3" />
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">STUTTER FX</span>
+                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  </div>
+                </button>
+
+                {/* Pack 3 */}
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">HARD CLIPPING</span>
+                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  </div>
+                </button>
+
+                {/* Pack 4 — locked */}
+                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-zinc-400 text-white text-[9px] px-1 font-mono">C-09</span>
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 text-zinc-500">Secret_Stems_v2</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-zinc-400 pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">LOCKED UNTIL 12AM</span>
+                    <span className="font-bold text-xs text-zinc-500">LOCKED</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Bottom Ad */}
+              <div className="p-4 bg-orange-600 text-black mt-auto">
+                <h4 className="font-mono font-black text-xl uppercase mb-1">Join The Noise</h4>
+                <p className="text-[10px] font-mono mb-3 border-b border-black pb-2">Submit your remix before the timer hits zero.</p>
+                <button className="w-full bg-black text-white py-2 font-mono font-bold text-xs uppercase hover:bg-white hover:text-black transition-colors border-2 border-black">
+                  Upload Track
                 </button>
               </div>
             </div>
