@@ -342,41 +342,41 @@ export default function App() {
               {/* Vending Slots */}
               <div className="flex flex-col p-3 gap-2 flex-1">
                 {/* Pack 1 */}
-                <button className="group relative w-full text-left bg-zinc-50 border-2 border-transparent p-3 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-500 overflow-hidden transition-all duration-300 z-10" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group w-full text-left bg-zinc-50 border-2 border-transparent p-3 shadow-sm hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono group-hover:bg-white group-hover:text-black">A-01</span>
-                    <Disc className="w-4 h-4 group-hover:animate-spin group-hover:text-white" />
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
+                    <Disc className="w-4 h-4 group-hover:animate-spin" />
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 group-hover:text-white">Acid_Washed_Breakbeats</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black group-hover:border-white/40 pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500 group-hover:text-fuchsia-100">170BPM / DISTORTED</span>
-                    <span className="font-bold text-xs group-hover:text-white">DOWNLOAD</span>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">170BPM / DISTORTED</span>
+                    <span className="font-bold text-xs group-hover:text-fuchsia-600 transition-colors">DOWNLOAD</span>
                   </div>
                 </button>
 
                 {/* Pack 2 */}
-                <button className="group relative w-full text-left bg-zinc-50 border-2 border-transparent p-3 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-500 overflow-hidden transition-all duration-300 z-10" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono group-hover:bg-white group-hover:text-black">A-02</span>
-                    <Mic2 className="w-4 h-4 group-hover:text-white" />
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
+                    <Mic2 className="w-4 h-4" />
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 group-hover:text-white">Vocal_Chops_Glitch</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black group-hover:border-white/40 pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500 group-hover:text-fuchsia-100">STUTTER FX</span>
-                    <span className="font-bold text-xs group-hover:text-white">DOWNLOAD</span>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">STUTTER FX</span>
+                    <span className="font-bold text-xs group-hover:text-fuchsia-600 transition-colors">DOWNLOAD</span>
                   </div>
                 </button>
 
                 {/* Pack 3 */}
-                <button className="group relative w-full text-left bg-zinc-50 border-2 border-transparent p-3 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-500 overflow-hidden transition-all duration-300 z-10" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono group-hover:bg-white group-hover:text-black">B-01</span>
-                    <Zap className="w-4 h-4 group-hover:text-white" />
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
+                    <Zap className="w-4 h-4" />
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 group-hover:text-white">Industrial_Kicks</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black group-hover:border-white/40 pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500 group-hover:text-fuchsia-100">HARD CLIPPING</span>
-                    <span className="font-bold text-xs group-hover:text-white">DOWNLOAD</span>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">HARD CLIPPING</span>
+                    <span className="font-bold text-xs group-hover:text-fuchsia-600 transition-colors">DOWNLOAD</span>
                   </div>
                 </button>
 
