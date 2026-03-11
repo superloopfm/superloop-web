@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { QrCode, Activity, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { QrCode, Activity, Star, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
   const [pad1, setPad1] = useState(false);
   const [pad2, setPad2] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   return (
     <body className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
 
@@ -313,12 +314,19 @@ export default function App() {
                 </div>
 
                 <div className="flex-1 flex items-center justify-center py-8">
-                  {/* Abstract Hardware Box */}
-                  <div className="w-48 h-48 border border-zinc-900 bg-zinc-100 shadow-[8px_8px_0px_0px_rgba(24,24,27,1)] flex items-center justify-center relative">
-                    <Cpu className="w-20 h-20 text-zinc-300 stroke-[0.5]" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="font-mono text-2xl font-bold tracking-tighter">CORE_01</span>
-                      <span className="text-[10px] font-mono uppercase mt-1">Processor Unit</span>
+                  {/* CORE_01 Record Display */}
+                  <div className="w-48 h-48 border border-zinc-900 bg-[#0a0a0a] shadow-[8px_8px_0px_0px_rgba(24,24,27,1)] flex items-center justify-center relative overflow-hidden">
+                    <video
+                      ref={videoRef}
+                      src="/videos/ronin-record.mp4"
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                    {/* CORE_01 floating label */}
+                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
+                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
                     </div>
                     {/* Annotation */}
                     <div className="absolute -right-4 -top-4 w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-mono border-2 border-white">
@@ -350,7 +358,7 @@ export default function App() {
               {/* Vending Slots */}
               <div className="flex flex-col p-3 gap-2 flex-1">
                 {/* Pack 1 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
                     <Disc className="w-4 h-4 group-hover:animate-spin" />
@@ -363,7 +371,7 @@ export default function App() {
                 </button>
 
                 {/* Pack 2 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
                     <Mic2 className="w-4 h-4" />
@@ -376,7 +384,7 @@ export default function App() {
                 </button>
 
                 {/* Pack 3 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
                     <Zap className="w-4 h-4" />
@@ -389,7 +397,7 @@ export default function App() {
                 </button>
 
                 {/* Pack 4 — locked */}
-                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed">
+                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed" onMouseEnter={() => videoRef.current?.play()} onMouseLeave={() => videoRef.current?.pause()}>
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-zinc-400 text-white text-[9px] px-1 font-mono">C-09</span>
                     <Lock className="w-4 h-4" />
@@ -424,9 +432,9 @@ export default function App() {
             <div className="lg:col-span-5 flex flex-col gap-0">
               <div className="relative aspect-[3/4] border border-white/20 bg-[#111] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?q=80&w=1000&auto=format&fit=crop"
-                  alt="Break The Loop"
-                  className="w-full h-full object-cover grayscale contrast-125 brightness-75"
+                  src="/images/sunset-vending.png"
+                  alt="Sunset Vending Machine"
+                  className="w-full h-full object-contain max-h-[32rem] object-bottom grayscale mix-blend-luminosity opacity-80"
                 />
                 {/* Grid overlay */}
                 <div
