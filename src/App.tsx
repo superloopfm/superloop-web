@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Disc3, Disc, PlayCircle, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Package, Disc3, Disc, PlayCircle, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -344,7 +344,7 @@ export default function App() {
               {/* Header */}
               <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
                 <div className="flex items-center gap-2">
-                  <Disc3 className="w-4 h-4" />
+                  <Package className="w-4 h-4" />
                   <span className="font-mono text-sm font-bold uppercase tracking-wide">Soundpack_Content</span>
                 </div>
                 <span className="text-[10px] font-mono border border-white/30 px-1">V.4.0</span>
@@ -555,18 +555,7 @@ export default function App() {
           </div>
         </aside>
 
-        {/* Floating Annotation (Overlapping Layout) */}
-        <div className="absolute top-[25%] right-[10%] hidden lg:block z-40 pointer-events-none">
-          <div className="relative">
-            <svg width="100" height="100" className="overflow-visible">
-              <path d="M 0 0 L -40 40 L -100 40" fill="none" stroke="black" strokeWidth="1" />
-              <circle cx="0" cy="0" r="3" fill="black" />
-            </svg>
-            <div className="absolute top-[35px] right-[110px] bg-zinc-900 text-white text-[10px] font-mono px-2 py-1 whitespace-nowrap">
-              Figure 1.2: Patch Bay
-            </div>
-          </div>
-        </div>
+
 
       </main>
 
