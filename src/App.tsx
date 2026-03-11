@@ -303,19 +303,19 @@ export default function App() {
                 </div>
 
                 <div className="flex-1 flex items-center justify-center py-4">
-                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
-                  <div className="w-full relative">
+                  {/* CORE_01 Record Display — 50% scale container */}
+                  <div className="w-1/2 relative mx-auto">
                     <video
                       ref={videoRef}
                       src="/videos/ronin-record.mp4"
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
                     />
                     {/* CORE_01 floating label */}
-                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
-                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
+                    <div className="absolute -bottom-6 left-0 right-0 flex flex-col items-center pointer-events-none">
+                      <span className="font-mono text-[10px] sm:text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
                     </div>
                   </div>
                 </div>
