@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Activity, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -114,6 +114,22 @@ export default function App() {
           {/* ROW 1: Massive Title & Sub-grid */}
           <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[50vh] border-b border-zinc-300">
 
+            {/* Left-Side Background Video */}
+            <div className="absolute left-0 top-0 w-[45%] h-full overflow-hidden pointer-events-none z-0">
+              <video
+                src="/videos/ronin-record.mp4"
+                muted
+                loop
+                autoPlay
+                playsInline
+                className="w-full h-full object-cover opacity-30 grayscale"
+              />
+              {/* Grid / Dot Filter Overlay */}
+              <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+              {/* Right edge fade-out gradient */}
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-50 to-transparent"></div>
+            </div>
+
             {/* Background Wireframe Render */}
             <div className="absolute -right-20 top-0 w-3/4 h-full opacity-10 pointer-events-none">
               <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -179,27 +195,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Vellum Overlay Box 1 (Floating Data) */}
-            <div className="absolute bottom-12 left-6 lg:left-12 w-64 bg-white/60 backdrop-blur-md border border-zinc-200 p-4 z-30 shadow-sm">
-              <div className="flex justify-between items-center border-b border-zinc-300 pb-2 mb-2">
-                <span className="text-xs font-mono uppercase text-zinc-500">Frequency Response</span>
-                <Activity className="w-4 h-4 text-zinc-900" />
-              </div>
-              <div className="space-y-1">
-                <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Low Pass</span>
-                  <span className="font-mono">20Hz - 20kHz</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Resonance</span>
-                  <span className="font-mono text-zinc-900">+12dB</span>
-                </div>
-                <div className="w-full bg-zinc-200 h-px my-2"></div>
-                <p className="text-[10px] leading-tight text-zinc-600">
-                  Measured output from the master bus showing typical analog saturation characteristics.
-                </p>
-              </div>
-            </div>
 
           </div>
 
