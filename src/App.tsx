@@ -333,10 +333,6 @@ export default function App() {
                     <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
                       <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
                     </div>
-                    {/* Annotation */}
-                    <div className="absolute -right-2 -top-2 w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-xs font-mono border-2 border-white">
-                      A+
-                    </div>
                   </div>
                 </div>
 
@@ -431,26 +427,16 @@ export default function App() {
 
         {/* REMIX NOW: Full-width dark editorial block */}
         <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-8 px-8 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
             {/* COL 2: Glitch Image */}
-            <div className="lg:col-span-5 flex flex-col gap-0">
-              <div className="relative aspect-[3/4] border border-white/20 bg-[#111] overflow-hidden">
+            <div className="lg:col-span-5 flex flex-col gap-0 self-stretch">
+              <div className="relative h-full min-h-[32rem] overflow-hidden">
                 <img
                   src="/images/sunset-vending.png"
                   alt="Sunset Vending Machine"
-                  className="w-full h-full object-contain max-h-[32rem] object-bottom grayscale mix-blend-luminosity opacity-80"
+                  className="w-full h-full object-contain object-right grayscale opacity-90"
                 />
-                {/* Grid overlay */}
-                <div
-                  className="absolute inset-0 pointer-events-none opacity-20"
-                  style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                    backgroundSize: '30px 30px',
-                  }}
-                ></div>
-                {/* Dashed inner border */}
-                <div className="absolute inset-4 border border-dashed border-white/20 pointer-events-none"></div>
               </div>
             </div>
 
