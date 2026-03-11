@@ -458,6 +458,11 @@ export default function App() {
                       Claim Your Copy
                     </button>
                   </div>
+                  <div className="mt-3 text-center">
+                    <p className="font-mono text-[8px] sm:text-[9px] text-white/50 leading-tight">
+                      NO PURCHASE NECESSARY. A purchase will not improve your chances. <br className="hidden sm:block" /> Void where prohibited. See Official Rules for odds & details.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm mt-6">
@@ -499,8 +504,22 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full bg-zinc-950 text-zinc-500 py-6 text-center text-xs font-mono uppercase tracking-widest border-t border-zinc-900">
-        © {new Date().getFullYear()} Superloop.fm — All Rights Reserved.
+      <footer className="border-t border-zinc-900 bg-black text-zinc-500 py-12 px-6">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Footer Left - Links */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-mono text-xs text-center md:text-left">
+            <a href="#privacy" className="hover:text-white transition-colors uppercase tracking-wider">Privacy Policy</a>
+            <a href="#terms" className="hover:text-white transition-colors uppercase tracking-wider">Terms & Conditions</a>
+            <a href="#rules" className="hover:text-white transition-colors uppercase tracking-wider text-fuchsia-500">Official Sweepstakes Rules</a>
+          </div>
+
+          {/* Footer Right - Legal Copy */}
+          <div className="text-center md:text-right font-mono text-[9px] sm:text-[10px] space-y-2">
+            <p>No purchase necessary to enter or win. Void where prohibited by law.</p>
+            <p>Open to legal US residents 18+. See Official Rules for full prize tier details and ARV.</p>
+            <p className="mt-4 text-zinc-600">© 2026 SUPERLOOP. ALL RIGHTS RESERVED.</p>
+          </div>
+        </div>
       </footer>
 
     </body>
