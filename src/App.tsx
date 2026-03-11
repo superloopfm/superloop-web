@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Disc3, Disc, PlayCircle, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
   const [pad1, setPad1] = useState(false);
   const [pad2, setPad2] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isSyntheticLit, setIsSyntheticLit] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -115,7 +116,7 @@ export default function App() {
           <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[50vh] border-b border-zinc-300">
 
             {/* Left-Side Background Video */}
-            <div className="absolute left-0 top-0 w-[45%] h-full overflow-hidden pointer-events-none z-0">
+            <div className="absolute left-0 top-0 w-[65%] h-full overflow-hidden pointer-events-none z-0">
               <video
                 src="/videos/hero-bg.mp4"
                 muted
@@ -153,32 +154,25 @@ export default function App() {
                     </div>
                   </div>
 
-                  <h2 className="text-[12vw] lg:text-[7vw] leading-[0.85] font-black text-white tracking-tighter mix-blend-difference mb-6 cursor-pointer hover:text-[#00FF41] transition-colors">
+                  <h2 className={`text-[12vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-[#FF3300] drop-shadow-[0_0_25px_rgba(255,51,0,0.8)]' : 'text-zinc-950'}`}>
                     SYNTHETIC<br />DREAMS
                   </h2>
 
-                  <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-white/60 bg-black/70 backdrop-blur-md p-4 border-l-2 border-[#00FF41]">
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4 text-[#00FF41]" />
-                      <span className="text-white">ARTIST:</span> NEON_VIOLET
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <BarChart2 className="w-4 h-4 text-[#00FF41]" />
-                      <span className="text-white">STREAMS:</span> 4,291,002
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-[#00FF41]" />
-                      <span className="text-[#00FF41]">+142%</span> VELOCITY
-                    </div>
+                  <div className="mt-12 flex flex-col gap-1 font-mono text-sm tracking-widest uppercase">
+                    <div className="text-zinc-900 font-bold">Limited Edition of 100</div>
+                    <div className="text-zinc-500">Digital + Physical. Remix Week Pass Included.</div>
                   </div>
                 </div>
 
                 {/* Right: 3D tilt card — massive */}
                 <div className="lg:col-span-5">
-                  <div className="relative bg-[#0a0a0a] border border-white/20 p-3 transition-transform duration-700 [transform:rotateY(12deg)] hover:[transform:rotateY(0deg)] shadow-[0_0_80px_rgba(0,255,65,0.2)] group-hover:border-[#00FF41]">
+                  <div
+                    className="relative bg-[#0a0a0a] border border-white/20 p-3 shadow-[0_0_80px_rgba(0,255,65,0.2)] group-hover:border-[#00FF41] cursor-pointer"
+                    onClick={() => setIsSyntheticLit(!isSyntheticLit)}
+                  >
                     <img
                       src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop"
-                      className="w-full aspect-square object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                      className="w-full aspect-square object-cover brightness-75 hover:brightness-110 transition-all duration-300"
                       alt="Synthetic Dreams cover"
                     />
                     <div className="absolute top-6 right-6 animate-[spin_20s_linear_infinite]">
