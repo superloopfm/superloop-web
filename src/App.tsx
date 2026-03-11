@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight } from 'lucide-react';
+import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDown } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -281,9 +281,12 @@ export default function App() {
 
               </div>
 
-              <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
-                <span className="font-mono text-xs text-neutral-500 uppercase tracking-wider">Remix Section Below</span>
-                <ArrowDownRight className="w-5 h-5 text-fuchsia-500" />
+              <div className="mt-auto pt-6 border-t border-white/10 flex items-center gap-3 animate-bounce">
+                <ArrowDown className="w-8 h-8 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.6)]" />
+                <span className="font-mono text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400 uppercase tracking-wider">
+                  CLAIM YOUR FREE PACK &amp; REMIX PASS
+                </span>
+                <ArrowDown className="w-8 h-8 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.6)]" />
               </div>
             </div>
 
@@ -339,41 +342,41 @@ export default function App() {
               {/* Vending Slots */}
               <div className="flex flex-col p-3 gap-2 flex-1">
                 {/* Pack 1 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group relative w-full text-left bg-zinc-50 border-2 border-transparent p-3 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-500 overflow-hidden transition-all duration-300 z-10" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
-                    <Disc className="w-4 h-4 group-hover:animate-spin" />
+                    <span className="bg-black text-white text-[9px] px-1 font-mono group-hover:bg-white group-hover:text-black">A-01</span>
+                    <Disc className="w-4 h-4 group-hover:animate-spin group-hover:text-white" />
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">170BPM / DISTORTED</span>
-                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 group-hover:text-white">Acid_Washed_Breakbeats</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black group-hover:border-white/40 pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500 group-hover:text-fuchsia-100">170BPM / DISTORTED</span>
+                    <span className="font-bold text-xs group-hover:text-white">DOWNLOAD</span>
                   </div>
                 </button>
 
                 {/* Pack 2 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group relative w-full text-left bg-zinc-50 border-2 border-transparent p-3 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-500 overflow-hidden transition-all duration-300 z-10" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
-                    <Mic2 className="w-4 h-4" />
+                    <span className="bg-black text-white text-[9px] px-1 font-mono group-hover:bg-white group-hover:text-black">A-02</span>
+                    <Mic2 className="w-4 h-4 group-hover:text-white" />
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">STUTTER FX</span>
-                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 group-hover:text-white">Vocal_Chops_Glitch</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black group-hover:border-white/40 pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500 group-hover:text-fuchsia-100">STUTTER FX</span>
+                    <span className="font-bold text-xs group-hover:text-white">DOWNLOAD</span>
                   </div>
                 </button>
 
                 {/* Pack 3 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button className="group relative w-full text-left bg-zinc-50 border-2 border-transparent p-3 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-orange-500 overflow-hidden transition-all duration-300 z-10" onClick={() => setIsPlaying(p => !p)}>
                   <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
-                    <Zap className="w-4 h-4" />
+                    <span className="bg-black text-white text-[9px] px-1 font-mono group-hover:bg-white group-hover:text-black">B-01</span>
+                    <Zap className="w-4 h-4 group-hover:text-white" />
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">HARD CLIPPING</span>
-                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 group-hover:text-white">Industrial_Kicks</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black group-hover:border-white/40 pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500 group-hover:text-fuchsia-100">HARD CLIPPING</span>
+                    <span className="font-bold text-xs group-hover:text-white">DOWNLOAD</span>
                   </div>
                 </button>
 
@@ -406,7 +409,7 @@ export default function App() {
         </section>
 
         {/* REMIX NOW: Full-width dark editorial block */}
-        <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-8 px-8 md:px-12">
+        <div className="col-span-full bg-neutral-950 border-t-2 border-zinc-300 py-8 px-8 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
             {/* COL 2: Glitch Image */}
@@ -424,19 +427,17 @@ export default function App() {
             <div className="lg:col-span-7 flex flex-col gap-6">
 
               {/* Remix Now header */}
-              <div className="border-l-2 border-[#FF3300] pl-4">
+              <div className="border-l-2 border-white/50 pl-4">
                 <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
                   Remix<br />Now
                 </h2>
 
                 {/* Live Inventory Counter */}
-                <div className="flex items-center gap-3 mb-8 bg-white/5 backdrop-blur-md border border-white/20 px-4 py-2.5 w-fit rounded-full shadow-[0_0_20px_rgba(232,121,249,0.2)]">
-                  <div className="relative flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-fuchsia-500"></div>
-                    <div className="absolute w-5 h-5 rounded-full bg-fuchsia-500 animate-ping opacity-75"></div>
-                  </div>
-                  <span className="font-mono text-sm font-bold text-white tracking-widest drop-shadow-md">
-                    <span className="text-fuchsia-400">47</span> OF 100 RECORDS REMAINING
+                <div className="mb-8 w-fit">
+                  <span className="font-mono text-xl font-bold tracking-widest text-zinc-300 drop-shadow-md">
+                    <span className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-orange-500 to-fuchsia-500 animate-[pulse_3s_ease-in-out_infinite] bg-[length:200%_auto]">
+                      47
+                    </span> OF 100 RECORDS REMAINING
                   </span>
                 </div>
 
