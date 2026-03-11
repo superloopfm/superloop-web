@@ -149,12 +149,12 @@ export default function App() {
                 {/* Left: Text block */}
                 <div className="lg:col-span-7">
                   <div className="flex items-baseline gap-4 mb-4">
-                    <div className="bg-[#FF5F00] text-black font-mono text-xs font-bold px-3 py-1 uppercase rotate-1 select-none">
+                    <div className="bg-gradient-to-r from-fuchsia-600 via-purple-600 to-orange-500 text-white font-mono text-xs font-bold px-3 py-1 uppercase rotate-1 select-none">
                       Current Reign
                     </div>
                   </div>
 
-                  <h2 className={`text-[12vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-[#FF3300] drop-shadow-[0_0_25px_rgba(255,51,0,0.8)]' : 'text-zinc-950'}`}>
+                  <h2 className={`text-[12vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-fuchsia-400 drop-shadow-[0_0_30px_rgba(232,121,249,0.9)]' : 'text-zinc-950'}`}>
                     SYNTHETIC<br />DREAMS
                   </h2>
 
@@ -283,25 +283,28 @@ export default function App() {
 
               <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
                 <span className="font-mono text-xs text-neutral-500 uppercase tracking-wider">Remix Section Below</span>
-                <ArrowDownRight className="w-5 h-5 text-[#FF3300]" />
+                <ArrowDownRight className="w-5 h-5 text-fuchsia-500" />
               </div>
             </div>
 
             {/* Block B: Product Showcase (Center) */}
-            <div className="col-span-1 lg:col-span-4 border-r border-zinc-800 bg-zinc-950 p-6 relative overflow-hidden group">
+            <div className="col-span-1 lg:col-span-4 border-r border-zinc-800 bg-zinc-950 flex flex-col relative overflow-hidden group">
               {/* Dotted Grid BG */}
               <div
                 className="absolute inset-0"
                 style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
               ></div>
 
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start">
-                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
-                    <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
-                  </div>
+              {/* Header */}
+              <div className="p-3 border-b border-zinc-800 bg-black text-white flex justify-between items-center z-10 w-full">
+                <div className="flex items-center gap-2">
+                  <Disc3 className="w-4 h-4 text-fuchsia-500" />
+                  <span className="font-mono text-sm font-bold uppercase tracking-wide">Review: PRO-1</span>
                 </div>
+                <span className="text-[10px] font-mono border border-white/30 px-1">CORE 01</span>
+              </div>
 
+              <div className="relative z-10 flex flex-col flex-1">
                 <div className="flex-1 flex items-center justify-center py-4">
                   {/* CORE_01 Record Display — 50% scale container */}
                   <div className="w-1/2 relative mx-auto">
@@ -318,13 +321,6 @@ export default function App() {
                       <span className="font-mono text-[10px] sm:text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
-                    "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
-                  </p>
                 </div>
               </div>
             </div>
