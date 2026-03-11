@@ -16,57 +16,57 @@ export default function App() {
       <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[16rem_1fr_4rem] border-x border-zinc-300 bg-transparent" style={{ '--mix': mix / 100 } as React.CSSProperties}>
 
         {/* LEFT MARGIN: Navigation Sidebar */}
-        <aside className="relative border-r border-zinc-300 h-full hidden md:flex flex-col items-start px-6 py-8 bg-zinc-50/50 backdrop-blur-sm">
+        <aside className="relative border-r border-zinc-300 h-full hidden md:flex flex-col items-center px-2 py-8 bg-zinc-50/50 backdrop-blur-sm">
           {/* Logo */}
-          <img src="/logos/superloop-bl-1.png" alt="Superloop" className="w-8 h-8 object-contain mb-8" />
+          <img src="/logos/superloop-bl-1.png" alt="Superloop" className="w-8 h-8 object-contain" />
 
-          {/* Divider */}
-          <div className="w-full h-px bg-zinc-300 mb-8"></div>
+          {/* Vertical line from logo to nav */}
+          <div className="w-px h-16 bg-zinc-300 my-4"></div>
 
           {/* Nav Menu */}
-          <nav className="flex flex-col gap-5 w-full">
+          <nav className="flex flex-col items-center text-center gap-6 w-full">
             {/* Studio / Remix — Active */}
             <a
               href="#"
-              className="group flex items-center gap-2 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300]">-&gt;</span>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
               Studio / Remix
             </a>
 
             {/* Soundpacks — Active */}
             <a
               href="#"
-              className="group flex items-center gap-2 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300]">-&gt;</span>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
               Soundpacks
             </a>
 
             {/* Artist ID — Active */}
             <a
               href="#"
-              className="group flex items-center gap-2 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300]">-&gt;</span>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
               Artist ID
             </a>
 
             {/* Divider */}
-            <div className="w-full h-px bg-zinc-200"></div>
+            <div className="w-8 h-px bg-zinc-200"></div>
 
             {/* Leaderboard — Locked */}
-            <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+            <div className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed">
               <Lock className="w-3 h-3 text-zinc-500 flex-shrink-0" />
               <span className="font-mono text-sm uppercase font-bold tracking-widest text-zinc-500">Leaderboard</span>
-              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1 ml-auto">BETA</span>
+              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1">BETA</span>
             </div>
 
             {/* Remix Trees — Locked */}
-            <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+            <div className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed">
               <Lock className="w-3 h-3 text-zinc-500 flex-shrink-0" />
               <span className="font-mono text-sm uppercase font-bold tracking-widest text-zinc-500">Remix Trees</span>
-              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1 ml-auto">BETA</span>
+              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1">BETA</span>
             </div>
           </nav>
         </aside>
@@ -373,7 +373,7 @@ export default function App() {
         <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-8 px-8 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-            {/* COL 2: Glitch Image + "Break The Loop" box */}
+            {/* COL 2: Glitch Image */}
             <div className="lg:col-span-5 flex flex-col gap-0">
               <div className="relative aspect-[3/4] border border-white/20 bg-[#111] overflow-hidden">
                 <img
@@ -391,23 +391,25 @@ export default function App() {
                 ></div>
                 {/* Dashed inner border */}
                 <div className="absolute inset-4 border border-dashed border-white/20 pointer-events-none"></div>
-                {/* "Break The Loop" orange callout */}
-                <div className="absolute bottom-6 left-6 right-6 bg-[#FF3300] text-black p-4 shadow-[8px_8px_0px_white]">
-                  <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-70">SP SOUNDPACK</div>
-                  <h3 className="font-black text-2xl uppercase leading-none tracking-tighter">Break<br />The Loop</h3>
-                  <div className="font-mono text-[9px] mt-2 uppercase tracking-widest">VOL.1 // REMIX EDITION</div>
-                </div>
               </div>
             </div>
 
             {/* COL 3: Remix Now header + specs + vending buttons */}
             <div className="lg:col-span-7 flex flex-col gap-6">
 
-              {/* Remix Now header + specs */}
+              {/* Remix Now header + "Break The Loop" box side by side */}
               <div className="border-l-2 border-[#FF3300] pl-4">
-                <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
-                  Remix<br />Now
-                </h2>
+                <div className="flex items-start gap-6 mb-4">
+                  <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none">
+                    Remix<br />Now
+                  </h2>
+                  {/* "Break The Loop" orange callout — lifted up next to the title */}
+                  <div className="bg-[#FF3300] text-black p-4 shadow-[8px_8px_0px_white] flex-shrink-0">
+                    <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-70">SP SOUNDPACK</div>
+                    <h3 className="font-black text-2xl uppercase leading-none tracking-tighter">Break<br />The Loop</h3>
+                    <div className="font-mono text-[9px] mt-2 uppercase tracking-widest">VOL.1 // REMIX EDITION</div>
+                  </div>
+                </div>
                 <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm">
                   <p>01 // DOWNLOAD STEMS<br />Format: WAV 24bit<br />Size: 2.4GB</p>
                   <p>02 // SUBMIT TRACK<br />Deadline: 14.10.24<br />BPM: 128-140</p>
