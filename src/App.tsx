@@ -13,23 +13,62 @@ export default function App() {
       </div>
 
       {/* Main Grid Container — no max-w constraint, extends to ultrawide edges */}
-      <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[4rem_1fr_4rem] border-x border-zinc-300 bg-transparent" style={{ '--mix': mix / 100 } as React.CSSProperties}>
+      <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[16rem_1fr_4rem] border-x border-zinc-300 bg-transparent" style={{ '--mix': mix / 100 } as React.CSSProperties}>
 
-        {/* LEFT MARGIN: Running Header */}
-        <aside className="relative border-r border-zinc-300 h-full hidden md:flex flex-col items-center justify-between py-12 bg-zinc-50/50 backdrop-blur-sm">
-          <div className="flex flex-col items-center gap-6">
-            <img src="/logos/superloop-bl-1.png" alt="Superloop" className="w-8 h-8 object-contain" />
-            <div className="h-24 w-px bg-zinc-300"></div>
-          </div>
-          <div className="rotate-180 [writing-mode:vertical-rl] text-xs font-mono tracking-widest text-zinc-500 uppercase flex items-center gap-4">
-            <span>Vol. 84</span>
-            <span className="text-zinc-900 font-semibold">Audio Engineering Quarterly</span>
-            <span>Serial No. 2049-X</span>
-          </div>
-          <div className="flex flex-col items-center gap-6">
-            <div className="h-24 w-px bg-zinc-300"></div>
-            <span className="text-xs font-mono">01</span>
-          </div>
+        {/* LEFT MARGIN: Navigation Sidebar */}
+        <aside className="relative border-r border-zinc-300 h-full hidden md:flex flex-col items-start px-6 py-8 bg-zinc-50/50 backdrop-blur-sm">
+          {/* Logo */}
+          <img src="/logos/superloop-bl-1.png" alt="Superloop" className="w-8 h-8 object-contain mb-8" />
+
+          {/* Divider */}
+          <div className="w-full h-px bg-zinc-300 mb-8"></div>
+
+          {/* Nav Menu */}
+          <nav className="flex flex-col gap-5 w-full">
+            {/* Studio / Remix — Active */}
+            <a
+              href="#"
+              className="group flex items-center gap-2 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+            >
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300]">-&gt;</span>
+              Studio / Remix
+            </a>
+
+            {/* Soundpacks — Active */}
+            <a
+              href="#"
+              className="group flex items-center gap-2 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+            >
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300]">-&gt;</span>
+              Soundpacks
+            </a>
+
+            {/* Artist ID — Active */}
+            <a
+              href="#"
+              className="group flex items-center gap-2 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+            >
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300]">-&gt;</span>
+              Artist ID
+            </a>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-zinc-200"></div>
+
+            {/* Leaderboard — Locked */}
+            <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+              <Lock className="w-3 h-3 text-zinc-500 flex-shrink-0" />
+              <span className="font-mono text-sm uppercase font-bold tracking-widest text-zinc-500">Leaderboard</span>
+              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1 ml-auto">BETA</span>
+            </div>
+
+            {/* Remix Trees — Locked */}
+            <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+              <Lock className="w-3 h-3 text-zinc-500 flex-shrink-0" />
+              <span className="font-mono text-sm uppercase font-bold tracking-widest text-zinc-500">Remix Trees</span>
+              <span className="font-mono text-[9px] border border-zinc-400 text-zinc-400 px-1 ml-auto">BETA</span>
+            </div>
+          </nav>
         </aside>
 
         {/* CENTER CONTENT: Swiss Grid Layout */}
@@ -150,7 +189,7 @@ export default function App() {
           <div className="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh]">
 
             {/* Block A: Remix Week (Left) — bleeds into left margin */}
-            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[4rem] pl-[3rem] md:pl-[4rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
+            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[16rem] pl-[3rem] md:pl-[16rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
               <div className="select-none">
                 {/* Glitch sliced typography */}
                 <div className="glitch-wrapper mb-6">
