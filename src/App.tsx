@@ -1,6 +1,8 @@
-import { Aperture, QrCode, Activity, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { useState } from 'react';
+import { QrCode, Activity, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
+  const [mix, setMix] = useState(0);
   return (
     <body className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
 
@@ -11,12 +13,12 @@ export default function App() {
       </div>
 
       {/* Main Grid Container — no max-w constraint, extends to ultrawide edges */}
-      <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[4rem_1fr_4rem] border-x border-zinc-300 bg-transparent">
+      <main className="relative z-10 w-full min-h-screen grid grid-cols-[3rem_1fr_3rem] md:grid-cols-[4rem_1fr_4rem] border-x border-zinc-300 bg-transparent" style={{ '--mix': mix / 100 } as React.CSSProperties}>
 
         {/* LEFT MARGIN: Running Header */}
         <aside className="relative border-r border-zinc-300 h-full hidden md:flex flex-col items-center justify-between py-12 bg-zinc-50/50 backdrop-blur-sm">
           <div className="flex flex-col items-center gap-6">
-            <Aperture className="w-6 h-6 text-zinc-900" />
+            <img src="/logos/superloop-bl-1.png" alt="Superloop" className="w-8 h-8 object-contain" />
             <div className="h-24 w-px bg-zinc-300"></div>
           </div>
           <div className="rotate-180 [writing-mode:vertical-rl] text-xs font-mono tracking-widest text-zinc-500 uppercase flex items-center gap-4">
@@ -168,7 +170,10 @@ export default function App() {
                 <img
                   src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop"
                   alt="Remix Laboratory"
-                  className="w-full h-48 md:h-64 object-cover grayscale contrast-125 brightness-75"
+                  className="w-full h-48 md:h-64 object-cover"
+                  style={{
+                    filter: `hue-rotate(calc(180deg * var(--mix))) contrast(calc(100% + 50% * var(--mix))) grayscale(calc(1 - 1 * var(--mix)))`,
+                  }}
                 />
                 {/* Dashed border overlay */}
                 <div className="absolute inset-3 border border-dashed border-white/30 pointer-events-none"></div>
@@ -190,7 +195,8 @@ export default function App() {
                   type="range"
                   min="0"
                   max="100"
-                  defaultValue="0"
+                  value={mix}
+                  onChange={(e) => setMix(Number(e.target.value))}
                   className="w-full appearance-none bg-zinc-800 h-1 rounded outline-none cursor-pointer"
                   style={{
                     accentColor: '#FF3300',
@@ -325,7 +331,7 @@ export default function App() {
         </section>
 
         {/* REMIX NOW: Full-width dark editorial block */}
-        <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-16 px-8 md:px-12">
+        <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-8 px-8 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
             {/* COL 2: Glitch Image + "Break The Loop" box */}
@@ -380,7 +386,7 @@ export default function App() {
 
                 <div className="space-y-3">
                   {/* Pack A1 */}
-                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                  <button className="vending-btn w-full bg-neutral-900 border-2 border-neutral-800 p-4 rounded-none flex items-center justify-between group text-left shadow-[3px_3px_0px_white] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none hover:border-[#FF3300] transition-all">
                     <div className="flex items-center gap-4">
                       <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">A1</span>
                       <div>
@@ -394,7 +400,7 @@ export default function App() {
                   </button>
 
                   {/* Pack B2 */}
-                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                  <button className="vending-btn w-full bg-neutral-900 border-2 border-neutral-800 p-4 rounded-none flex items-center justify-between group text-left shadow-[3px_3px_0px_white] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none hover:border-[#FF3300] transition-all">
                     <div className="flex items-center gap-4">
                       <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">B2</span>
                       <div>
@@ -408,7 +414,7 @@ export default function App() {
                   </button>
 
                   {/* Pack C3 */}
-                  <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                  <button className="vending-btn w-full bg-neutral-900 border-2 border-neutral-800 p-4 rounded-none flex items-center justify-between group text-left shadow-[3px_3px_0px_white] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none hover:border-[#FF3300] transition-all">
                     <div className="flex items-center gap-4">
                       <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">C3</span>
                       <div>
