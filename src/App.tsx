@@ -287,8 +287,50 @@ export default function App() {
               </div>
             </div>
 
-            {/* Block C: Supply Depot */}
-            <div className="col-span-1 lg:col-span-4 border-r border-zinc-300 flex flex-col bg-zinc-100 overflow-y-auto">
+            {/* Block B: Product Showcase (Center) */}
+            <div className="col-span-1 lg:col-span-4 border-r border-zinc-800 bg-zinc-950 p-6 relative overflow-hidden group">
+              {/* Dotted Grid BG */}
+              <div
+                className="absolute inset-0"
+                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+              ></div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex justify-between items-start">
+                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
+                    <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
+                  </div>
+                </div>
+
+                <div className="flex-1 flex items-center justify-center py-4">
+                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
+                  <div className="w-full relative">
+                    <video
+                      ref={videoRef}
+                      src="/videos/ronin-record.mp4"
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                    {/* CORE_01 floating label */}
+                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
+                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
+                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Block C: Supply Depot (Right) */}
+            <div className="col-span-1 lg:col-span-3 flex flex-col bg-zinc-100 overflow-y-auto">
               {/* Header */}
               <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
                 <div className="flex items-center gap-2">
@@ -360,48 +402,6 @@ export default function App() {
                 <button className="w-full bg-black text-white py-2 font-mono font-bold text-xs uppercase hover:bg-white hover:text-black transition-colors border-2 border-black">
                   Upload Track
                 </button>
-              </div>
-            </div>
-
-            {/* Block B: Product Showcase (Right) */}
-            <div className="col-span-1 lg:col-span-3 bg-zinc-950 p-6 relative overflow-hidden group">
-              {/* Dotted Grid BG */}
-              <div
-                className="absolute inset-0"
-                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
-              ></div>
-
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start">
-                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
-                    <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
-                  </div>
-                </div>
-
-                <div className="flex-1 flex items-center justify-center py-4">
-                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
-                  <div className="w-full relative">
-                    <video
-                      ref={videoRef}
-                      src="/videos/ronin-record.mp4"
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-contain"
-                    />
-                    {/* CORE_01 floating label */}
-                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
-                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
-                    "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
-                  </p>
-                </div>
               </div>
             </div>
 
