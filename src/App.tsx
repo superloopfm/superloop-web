@@ -167,10 +167,10 @@ export default function App() {
                 {/* Right: 3D tilt card — massive */}
                 <div className="lg:col-span-5">
                   <div
-                    className="relative bg-[#0a0a0a] border border-white/20 p-3 shadow-[0_0_80px_rgba(0,255,65,0.2)] group-hover:border-[#00FF41] cursor-pointer"
+                    className="relative cursor-pointer transition-transform hover:-translate-y-1 duration-300"
                     onClick={() => setIsSyntheticLit(!isSyntheticLit)}
                   >
-                    <div className="aspect-square w-full relative">
+                    <div className="aspect-square w-full relative rounded-2xl overflow-hidden shadow-2xl">
                       <img src="/images/dreamwarden-record.jpg" className="absolute inset-0 w-full h-full object-contain z-10 brightness-75 hover:brightness-110 transition-all duration-300" alt="Record" />
                       <img src="/images/dreamwarden-spine.png" className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none" alt="Spine Overlay" />
                     </div>
