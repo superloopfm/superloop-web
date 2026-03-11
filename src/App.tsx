@@ -36,9 +36,7 @@ export default function App() {
           {/* Top Navigation / Header Area */}
           <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-3 px-6 flex justify-between items-start relative bg-zinc-50/80 backdrop-blur-sm">
             <div className="flex flex-col gap-1">
-              <h1 className="font-mono text-4xl md:text-6xl tracking-tighter leading-none uppercase text-zinc-900">
-                SUPERLOOP.FM
-              </h1>
+              <img src="/logos/superloop-text-bl-1.png" alt="Superloop.fm" className="h-6 md:h-10 object-contain" />
               <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest mt-2 max-w-[20rem]">
                 The definitive guide to modular synthesis and analog waveform generation.
               </p>
@@ -70,16 +68,6 @@ export default function App() {
                 </defs>
                 <rect width="100%" height="100%" fill="url(#grid)" transform="rotate(-15) scale(1.5)" />
               </svg>
-            </div>
-
-            {/* OVERSIZED TYPOGRAPHY LAYER */}
-            <div className="relative z-10 w-full h-full flex flex-col justify-center px-6 lg:px-12 pointer-events-none">
-              <h2 className="text-[15vw] leading-[0.8] font-mono font-semibold tracking-tighter text-zinc-900 mix-blend-hard-light opacity-90">
-                SUPER
-              </h2>
-              <h2 className="text-[15vw] leading-[0.8] font-mono font-semibold tracking-tighter text-zinc-900 mix-blend-hard-light pl-[5vw] -mt-[2vw]">
-                LOOP.FM
-              </h2>
             </div>
 
             {/* #1 TRACK: SYNTHETIC DREAMS — upscaled centerpiece */}
