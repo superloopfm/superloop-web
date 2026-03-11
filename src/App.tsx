@@ -1,4 +1,4 @@
-import { Aperture, QrCode, Activity, FileText, ArrowRight, Star, Cpu, ArrowUpRight, Disc3 } from 'lucide-react';
+import { Aperture, QrCode, Activity, FileText, ArrowRight, Star, Cpu, ArrowUpRight, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle } from 'lucide-react';
 
 export default function App() {
   return (
@@ -93,11 +93,64 @@ export default function App() {
             {/* OVERSIZED TYPOGRAPHY LAYER */}
             <div className="relative z-10 w-full h-full flex flex-col justify-center px-6 lg:px-12 pointer-events-none">
               <h2 className="text-[15vw] leading-[0.8] font-mono font-semibold tracking-tighter text-zinc-900 mix-blend-hard-light opacity-90">
-                MODU
+                SUPER
               </h2>
-              <h2 className="text-[15vw] leading-[0.8] font-mono font-semibold tracking-tighter text-zinc-900 mix-blend-hard-light pl-[10vw] -mt-[2vw]">
-                LAR_
+              <h2 className="text-[15vw] leading-[0.8] font-mono font-semibold tracking-tighter text-zinc-900 mix-blend-hard-light pl-[5vw] -mt-[2vw]">
+                LOOP.FM
               </h2>
+            </div>
+
+            {/* #1 TRACK: SYNTHETIC DREAMS — injected from algo 2.html */}
+            <div className="absolute bottom-6 right-6 lg:right-12 z-30 w-full max-w-[580px] group">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-end">
+                {/* Left: Text block */}
+                <div className="lg:col-span-8">
+                  <div className="flex items-baseline gap-4 mb-3">
+                    <div className="bg-[#FF5F00] text-black font-mono text-xs font-bold px-3 py-1 uppercase rotate-1 select-none">
+                      Current Reign
+                    </div>
+                  </div>
+
+                  <h2 className="text-[8vw] lg:text-[4vw] leading-[0.85] font-black text-white tracking-tighter mix-blend-difference mb-4 cursor-pointer hover:text-[#00FF41] transition-colors">
+                    SYNTHETIC<br />DREAMS
+                  </h2>
+
+                  <div className="flex flex-wrap items-center gap-4 font-mono text-xs text-white/60 bg-black/70 backdrop-blur-md p-3 border-l-2 border-[#00FF41]">
+                    <div className="flex items-center gap-2">
+                      <User className="w-3 h-3 text-[#00FF41]" />
+                      <span className="text-white">ARTIST:</span> NEON_VIOLET
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <BarChart2 className="w-3 h-3 text-[#00FF41]" />
+                      <span className="text-white">STREAMS:</span> 4,291,002
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-3 h-3 text-[#00FF41]" />
+                      <span className="text-[#00FF41]">+142%</span> VELOCITY
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: 3D tilt card */}
+                <div className="lg:col-span-4">
+                  <div className="relative bg-[#0a0a0a] border border-white/20 p-2 transition-transform duration-700 [transform:rotateY(12deg)] hover:[transform:rotateY(0deg)] shadow-[0_0_50px_rgba(0,255,65,0.1)] group-hover:border-[#00FF41]">
+                    <img
+                      src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=1000&auto=format&fit=crop"
+                      className="w-full aspect-square object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+                      alt="Synthetic Dreams cover"
+                    />
+                    <div className="absolute top-4 right-4 animate-[spin_20s_linear_infinite]">
+                      <Disc className="w-8 h-8 text-white opacity-50" />
+                    </div>
+                    <div className="mt-2 flex justify-between items-center px-2">
+                      <div className="h-1 w-20 bg-white/10 overflow-hidden">
+                        <div className="h-full bg-[#00FF41] w-[80%] animate-pulse"></div>
+                      </div>
+                      <PlayCircle className="w-5 h-5 text-white hover:text-[#00FF41] cursor-pointer transition-colors" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Vellum Overlay Box 1 (Floating Data) */}
