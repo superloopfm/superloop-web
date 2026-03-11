@@ -1,4 +1,4 @@
-import { Aperture, QrCode, Activity, FileText, ArrowRight, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock } from 'lucide-react';
+import { Aperture, QrCode, Activity, Star, Cpu, Disc3, User, BarChart2, TrendingUp, Disc, PlayCircle, Package, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
 
 export default function App() {
   return (
@@ -150,27 +150,25 @@ export default function App() {
           {/* ROW 2: Asymmetrical Content Blocks */}
           <div className="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh]">
 
-            {/* Block A: Text Heavy (Left) */}
-            <div className="col-span-1 lg:col-span-4 border-r border-zinc-300 p-6 lg:p-8 flex flex-col justify-between bg-zinc-50">
-              <div>
-                <span className="inline-block px-2 py-1 bg-zinc-900 text-zinc-50 text-xs font-mono uppercase mb-4">Feature</span>
-                <h3 className="text-3xl lg:text-4xl font-semibold tracking-tight leading-none mb-6">
-                  The Evolution of Voltage Control
-                </h3>
-                <p className="text-lg text-zinc-600 leading-snug mb-6">
-                  Behind the scenes of the seminal Eurorack revolution and its impact on modern sound design.
-                </p>
+            {/* Block A: Remix Week (Left) — bleeds into left margin */}
+            <div className="col-span-1 lg:col-span-4 border-r border-zinc-300 -ml-[3rem] md:-ml-[4rem] pl-[3rem] md:pl-[4rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
+              <div className="select-none">
+                {/* Glitch sliced typography */}
+                <div className="glitch-wrapper mb-6">
+                  <div className="glitch-base">REMIX_WEEK</div>
+                  <div className="glitch-layer slice-top">REMIX_WEEK</div>
+                  <div className="glitch-layer slice-mid">REMIX_WEEK</div>
+                  <div className="glitch-layer slice-bot">REMIX_WEEK</div>
+                </div>
+                <div className="flex items-center gap-3 mt-4">
+                  <div className="h-px bg-white w-12"></div>
+                  <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">ISSUE_01.2 // DECONSTRUCTION_PHASE</p>
+                </div>
               </div>
 
-              <div className="mt-auto pt-8 border-t border-zinc-200">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase text-zinc-500 mb-2">
-                  <FileText className="w-3 h-3" />
-                  <span>Read time: 12 min</span>
-                </div>
-                <a href="#" className="group flex items-center justify-between w-full py-2 border-b border-zinc-900">
-                  <span className="font-mono text-sm group-hover:pl-2 transition-all">Read Article</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+              <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
+                <span className="font-mono text-xs text-neutral-500 uppercase tracking-wider">Remix Section Below</span>
+                <ArrowDownRight className="w-5 h-5 text-[#FF3300]" />
               </div>
             </div>
 
@@ -293,6 +291,97 @@ export default function App() {
           </div>
 
         </section>
+
+        {/* REMIX NOW: Full-width dark editorial block */}
+        <div className="col-span-full bg-neutral-950 border-t-2 border-[#FF3300] py-16 px-8 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            {/* Left: Remix Now header + specs */}
+            <div className="lg:col-span-5 border-l-2 border-[#FF3300] pl-4">
+              <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                Remix<br />Now
+              </h2>
+              <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm">
+                <p>01 // DOWNLOAD STEMS<br />Format: WAV 24bit<br />Size: 2.4GB</p>
+                <p>02 // SUBMIT TRACK<br />Deadline: 14.10.24<br />BPM: 128-140</p>
+                <p>03 // WIN HARDWARE<br />Prize: Analog Heat<br />+2yr Subscription</p>
+                <p>04 // JUDGING<br />By: Dave Clarke<br />Criteria: Innovation</p>
+              </div>
+            </div>
+
+            {/* Right: Available Packs vending list */}
+            <div className="lg:col-span-7 flex flex-col">
+              <div className="flex justify-between items-end mb-3 border-b border-white/20 pb-1">
+                <span className="font-mono text-[10px] text-[#FF3300] uppercase tracking-widest">Available_Packs</span>
+                <span className="font-mono text-[10px] text-neutral-500">Credits: ∞</span>
+              </div>
+
+              <div className="space-y-3">
+                {/* Pack A1 */}
+                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">A1</span>
+                    <div>
+                      <div className="font-bold text-sm uppercase tracking-tight text-white">Acid_Texture_Pack</div>
+                      <div className="font-mono text-[9px] text-neutral-500">303_WAVEFORMS // DISTORTION</div>
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
+                    <Download className="w-4 h-4" />
+                  </div>
+                </button>
+
+                {/* Pack B2 */}
+                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">B2</span>
+                    <div>
+                      <div className="font-bold text-sm uppercase tracking-tight text-white">Industrial_Kicks</div>
+                      <div className="font-mono text-[9px] text-neutral-500">HEAVY_IMPACT // LOW_END</div>
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
+                    <Download className="w-4 h-4" />
+                  </div>
+                </button>
+
+                {/* Pack C3 */}
+                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between group text-left hover:translate-y-1 transition-transform">
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-xl font-bold text-[#FF3300] group-hover:text-white transition-colors">C3</span>
+                    <div>
+                      <div className="font-bold text-sm uppercase tracking-tight text-white">Glitch_Vocals</div>
+                      <div className="font-mono text-[9px] text-neutral-500">CHOPPED // GRANULAR</div>
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-700 bg-black group-hover:bg-[#FF3300] group-hover:text-black transition-colors">
+                    <Download className="w-4 h-4" />
+                  </div>
+                </button>
+
+                {/* Pack D4 — locked */}
+                <button className="vending-btn w-full bg-neutral-900 border border-neutral-800 p-4 flex items-center justify-between text-left opacity-50 cursor-not-allowed">
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-xl font-bold text-neutral-600">D4</span>
+                    <div>
+                      <div className="font-bold text-sm uppercase tracking-tight text-neutral-500">Secret_Weapon</div>
+                      <div className="font-mono text-[9px] text-neutral-600">LOCKED_UNTIL_SUBMISSION</div>
+                    </div>
+                  </div>
+                  <div className="w-8 h-8 flex items-center justify-center border border-neutral-800 bg-neutral-900 text-neutral-700">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                </button>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-dashed border-neutral-800 flex justify-between font-mono text-[9px] text-neutral-500">
+                <span>SYS.ID: 884-21X</span>
+                <span>STATUS: ONLINE</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
         {/* RIGHT MARGIN: Technical Specs */}
         <aside className="relative border-l border-zinc-300 h-full hidden md:flex flex-col py-12 bg-zinc-50/50 backdrop-blur-sm">

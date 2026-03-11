@@ -92,4 +92,83 @@
     linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+
+  .bg-grid-dark {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .skeuo-card-dark {
+    background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
+    box-shadow:
+      0px 0px 0px 1px rgba(255,255,255,0.05),
+      0px 1px 2px rgba(0,0,0,0.5),
+      inset 0px 1px 0px rgba(255,255,255,0.05);
+  }
+
+  /* Glitch sliced typography — from REMIX WEEK prototype */
+  .glitch-wrapper {
+    position: relative;
+    display: inline-block;
+    mix-blend-mode: exclusion;
+  }
+  .glitch-base {
+    position: relative;
+    font-size: clamp(3rem, 8vw, 9vw);
+    line-height: 0.8;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    opacity: 0; /* spacer only */
+  }
+  .glitch-layer {
+    display: block;
+    font-size: clamp(3rem, 8vw, 9vw);
+    line-height: 0.8;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+  }
+  .slice-top {
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translateX(3px);
+  }
+  .slice-mid {
+    clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%);
+    transform: translateX(-2px);
+    filter: drop-shadow(3px 0 0 rgba(255, 0, 0, 0.6));
+  }
+  .slice-bot {
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translateX(2px);
+    filter: drop-shadow(-2px 0 0 rgba(255, 255, 0, 0.5));
+  }
+
+  .remix-week-slice {
+    position: relative;
+    display: inline-block;
+    line-height: 0.85;
+  }
+  .remix-week-slice::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 3px;
+    top: 0;
+    color: #FF3300;
+    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+    overflow: hidden;
+  }
+  .remix-week-slice::after {
+    content: attr(data-text);
+    position: absolute;
+    left: -3px;
+    top: 0;
+    color: #0044FF;
+    clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
+    overflow: hidden;
+  }
 }
