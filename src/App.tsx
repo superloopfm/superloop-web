@@ -430,24 +430,33 @@ export default function App() {
                 </h2>
 
                 {/* Live Inventory Counter */}
-                <div className="flex items-center gap-3 mb-8 bg-zinc-900 border border-zinc-800 p-3 w-fit">
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                  <span className="font-mono text-sm font-bold text-white tracking-widest">47 OF 100 RECORDS REMAINING</span>
+                <div className="flex items-center gap-3 mb-8 bg-white/5 backdrop-blur-md border border-white/20 px-4 py-2.5 w-fit rounded-full shadow-[0_0_20px_rgba(232,121,249,0.2)]">
+                  <div className="relative flex items-center justify-center">
+                    <div className="w-2.5 h-2.5 rounded-full bg-fuchsia-500"></div>
+                    <div className="absolute w-5 h-5 rounded-full bg-fuchsia-500 animate-ping opacity-75"></div>
+                  </div>
+                  <span className="font-mono text-sm font-bold text-white tracking-widest drop-shadow-md">
+                    <span className="text-fuchsia-400">47</span> OF 100 RECORDS REMAINING
+                  </span>
                 </div>
 
                 {/* "Break The Loop" email capture box */}
-                <div className="bg-[#FF3300] text-black p-6 shadow-[8px_8px_0px_white] max-w-md">
-                  <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-70">SP SOUNDPACK</div>
-                  <h3 className="font-black text-2xl uppercase leading-none tracking-tighter mb-2">Break<br />The Loop</h3>
-                  <div className="font-mono text-[9px] mb-4 uppercase tracking-widest">VOL.1 // REMIX EDITION</div>
-                  <input
-                    type="email"
-                    placeholder="YOUR EMAIL"
-                    className="w-full bg-black text-white font-mono text-xs px-3 py-2 mb-2 border-2 border-black placeholder:text-zinc-600 outline-none"
-                  />
-                  <button className="w-full bg-black text-white font-mono font-bold text-xs uppercase py-2 hover:bg-white hover:text-black transition-colors border-2 border-black">
-                    Claim Your Copy
-                  </button>
+                <div className="relative bg-gradient-to-br from-fuchsia-600 via-purple-600 to-orange-500 text-white p-6 shadow-[8px_8px_0px_white] max-w-md overflow-hidden">
+                  {/* Grid / Dot Texture Overlay */}
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJ मुआवजेKTI1NSwyNTUsMjU1LDAuMjUpIi8+PC9zdmc+')] opacity-40 z-0 pointer-events-none"></div>
+                  <div className="relative z-10">
+                    <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-80">SP SOUNDPACK</div>
+                    <h3 className="font-black text-2xl uppercase leading-none tracking-tighter mb-2">Break<br />The Loop</h3>
+                    <div className="font-mono text-[9px] mb-4 uppercase tracking-widest text-fuchsia-200">VOL.1 // REMIX EDITION</div>
+                    <input
+                      type="email"
+                      placeholder="YOUR EMAIL"
+                      className="w-full bg-black/40 text-white font-mono text-xs px-3 py-2 mb-2 border border-white/30 placeholder:text-white/60 outline-none focus:border-white transition-colors"
+                    />
+                    <button className="w-full bg-white text-black font-mono font-bold text-xs uppercase py-2 hover:bg-black hover:text-white transition-colors border-2 border-white hover:border-black">
+                      Claim Your Copy
+                    </button>
+                  </div>
                 </div>
 
                 <div className="font-mono text-[9px] text-neutral-400 grid grid-cols-2 gap-4 max-w-sm mt-6">
