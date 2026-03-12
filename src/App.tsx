@@ -4,11 +4,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { animate } from 'animejs';
 import { supabase } from './lib/supabase';
 
+/** Tiny 4-bar audio level meter — CSS-only looping animation */
+function AudioBars() {
+  return (
+    <div className="flex items-end gap-[2px] h-[10px]">
+      {[0, 1, 2, 3].map(i => (
+        <span
+          key={i}
+          className="w-[2px] bg-fuchsia-600 rounded-sm animate-[eqBounce_0.8s_ease-in-out_infinite]"
+          style={{ animationDelay: `${i * 0.15}s`, height: '60%' }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function App() {
   const [mix, setMix] = useState(0);
   const [pad1, setPad1] = useState(false);
   const [pad2, setPad2] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [playingTab, setPlayingTab] = useState<string | null>(null);
   const [isSyntheticLit, setIsSyntheticLit] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -28,12 +43,12 @@ export default function App() {
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
-    if (isPlaying) {
+    if (playingTab) {
       vid.play();
     } else {
       vid.pause();
     }
-  }, [isPlaying]);
+  }, [playingTab]);
 
   useEffect(() => {
     function calcCountdown() {
@@ -66,23 +81,31 @@ export default function App() {
     });
   }, []);
 
-  // Anime.js: Soundpack hover handlers
+  // Anime.js: Soundpack hover handlers — shadow push + color accent (no scaling)
   const handleSoundpackEnter = useCallback((el: HTMLButtonElement | null) => {
     if (!el) return;
     animate(el, {
-      scale: [1, 1.02],
-      duration: 250,
-      ease: 'outElastic(1, .6)',
+      boxShadow: ['3px 3px 0px 0px rgba(0,0,0,1)', '5px 5px 0px 0px rgba(192,38,211,1)'],
+      duration: 200,
+      ease: 'outCubic',
     });
+    const title = el.querySelector('.sp-title') as HTMLElement | null;
+    if (title) {
+      animate(title, { color: ['rgb(0,0,0)', 'rgb(192,38,211)'], duration: 200, ease: 'outCubic' });
+    }
   }, []);
 
   const handleSoundpackLeave = useCallback((el: HTMLButtonElement | null) => {
     if (!el) return;
     animate(el, {
-      scale: [1.02, 1],
-      duration: 200,
+      boxShadow: ['5px 5px 0px 0px rgba(192,38,211,1)', '3px 3px 0px 0px rgba(0,0,0,1)'],
+      duration: 150,
       ease: 'outQuad',
     });
+    const title = el.querySelector('.sp-title') as HTMLElement | null;
+    if (title) {
+      animate(title, { color: ['rgb(192,38,211)', 'rgb(0,0,0)'], duration: 150, ease: 'outQuad' });
+    }
   }, []);
 
   // Anime.js: Nav link hover handlers
@@ -228,9 +251,9 @@ export default function App() {
         <section ref={gridRef} className="relative w-full h-full grid grid-cols-1 lg:grid-cols-12 grid-rows-[auto_auto_1fr] gap-0">
 
           {/* Top Navigation / Header Area */}
-          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-1.5 px-4 sm:px-6 flex justify-between items-center relative bg-zinc-50/80 backdrop-blur-sm">
+          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-3 px-4 sm:px-6 flex justify-between items-center relative bg-zinc-50/80 backdrop-blur-sm">
             <div>
-              <img src="/logos/superloop-text-bl-1.png" alt="Superloop.fm" className="h-6 md:h-10 object-contain" />
+              <img src="/logos/superloop-text-bl-1.png" alt="Superloop.fm" className="h-5 md:h-8 object-contain" />
             </div>
 
             {/* Top Right Badge */}
@@ -478,16 +501,19 @@ export default function App() {
                 {/* Pack 1 */}
                 <button
                   ref={el => { soundpackRefs.current[0] = el; }}
-                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all"
-                  onClick={() => setIsPlaying(p => !p)}
+                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-y-[3px] active:shadow-none transition-all"
+                  onClick={() => setPlayingTab(prev => prev === 'A-01' ? null : 'A-01')}
                   onMouseEnter={() => handleSoundpackEnter(soundpackRefs.current[0])}
                   onMouseLeave={() => handleSoundpackLeave(soundpackRefs.current[0])}
                 >
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
-                    <Disc className="w-4 h-4 group-hover:animate-spin" />
+                    <div className="flex items-center gap-1.5">
+                      {playingTab === 'A-01' && <AudioBars />}
+                      <Disc className={`w-4 h-4 ${playingTab === 'A-01' ? 'animate-spin' : 'group-hover:animate-spin'}`} />
+                    </div>
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
+                  <h3 className="sp-title font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
                   <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
                     <span className="text-[9px] font-mono text-zinc-500">170BPM / DISTORTED</span>
                     <span className="font-bold text-xs group-hover:text-fuchsia-600 transition-colors">DOWNLOAD</span>
@@ -497,16 +523,19 @@ export default function App() {
                 {/* Pack 2 */}
                 <button
                   ref={el => { soundpackRefs.current[1] = el; }}
-                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all"
-                  onClick={() => setIsPlaying(p => !p)}
+                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-y-[3px] active:shadow-none transition-all"
+                  onClick={() => setPlayingTab(prev => prev === 'A-02' ? null : 'A-02')}
                   onMouseEnter={() => handleSoundpackEnter(soundpackRefs.current[1])}
                   onMouseLeave={() => handleSoundpackLeave(soundpackRefs.current[1])}
                 >
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
-                    <Mic2 className="w-4 h-4" />
+                    <div className="flex items-center gap-1.5">
+                      {playingTab === 'A-02' && <AudioBars />}
+                      <Mic2 className="w-4 h-4" />
+                    </div>
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
+                  <h3 className="sp-title font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
                   <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
                     <span className="text-[9px] font-mono text-zinc-500">STUTTER FX</span>
                     <span className="font-bold text-xs group-hover:text-fuchsia-600 transition-colors">DOWNLOAD</span>
@@ -516,16 +545,19 @@ export default function App() {
                 {/* Pack 3 */}
                 <button
                   ref={el => { soundpackRefs.current[2] = el; }}
-                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all"
-                  onClick={() => setIsPlaying(p => !p)}
+                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-y-[3px] active:shadow-none transition-all"
+                  onClick={() => setPlayingTab(prev => prev === 'B-01' ? null : 'B-01')}
                   onMouseEnter={() => handleSoundpackEnter(soundpackRefs.current[2])}
                   onMouseLeave={() => handleSoundpackLeave(soundpackRefs.current[2])}
                 >
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
-                    <Zap className="w-4 h-4" />
+                    <div className="flex items-center gap-1.5">
+                      {playingTab === 'B-01' && <AudioBars />}
+                      <Zap className="w-4 h-4" />
+                    </div>
                   </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
+                  <h3 className="sp-title font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
                   <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
                     <span className="text-[9px] font-mono text-zinc-500">HARD CLIPPING</span>
                     <span className="font-bold text-xs group-hover:text-fuchsia-600 transition-colors">DOWNLOAD</span>
