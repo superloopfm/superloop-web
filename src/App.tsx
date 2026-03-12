@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { animate } from 'animejs';
 import { supabase } from './lib/supabase';
 
 export default function App() {
@@ -18,6 +19,11 @@ export default function App() {
 
   // Live countdown to midnight
   const [countdown, setCountdown] = useState("");
+
+  // Refs for Anime.js targets
+  const gridRef = useRef<HTMLElement>(null);
+  const soundpackRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const vid = videoRef.current;
@@ -43,6 +49,74 @@ export default function App() {
     calcCountdown();
     const id = setInterval(calcCountdown, 1000);
     return () => clearInterval(id);
+  }, []);
+
+  // Anime.js: Page load stagger — fast, razor-sharp entrance
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const children = grid.querySelectorAll(':scope > *');
+    if (!children.length) return;
+    animate(children, {
+      opacity: [0, 1],
+      translateY: [10, 0],
+      duration: 400,
+      delay: (_el: any, i: number) => i * 60,
+      ease: 'outCubic',
+    });
+  }, []);
+
+  // Anime.js: Soundpack hover handlers
+  const handleSoundpackEnter = useCallback((el: HTMLButtonElement | null) => {
+    if (!el) return;
+    animate(el, {
+      scale: [1, 1.02],
+      duration: 250,
+      ease: 'outElastic(1, .6)',
+    });
+  }, []);
+
+  const handleSoundpackLeave = useCallback((el: HTMLButtonElement | null) => {
+    if (!el) return;
+    animate(el, {
+      scale: [1.02, 1],
+      duration: 200,
+      ease: 'outQuad',
+    });
+  }, []);
+
+  // Anime.js: Nav link hover handlers
+  const handleNavEnter = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const arrow = e.currentTarget.querySelector('.nav-arrow') as HTMLElement | null;
+    if (arrow) {
+      animate(arrow, {
+        translateX: ['-4px', '0px'],
+        opacity: [0, 1],
+        duration: 200,
+        ease: 'outCubic',
+      });
+    }
+    animate(e.currentTarget, {
+      letterSpacing: ['0.1em', '0.15em'],
+      duration: 200,
+      ease: 'outQuad',
+    });
+  }, []);
+
+  const handleNavLeave = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const arrow = e.currentTarget.querySelector('.nav-arrow') as HTMLElement | null;
+    if (arrow) {
+      animate(arrow, {
+        opacity: [1, 0],
+        duration: 150,
+        ease: 'inQuad',
+      });
+    }
+    animate(e.currentTarget, {
+      letterSpacing: ['0.15em', '0.1em'],
+      duration: 150,
+      ease: 'inQuad',
+    });
   }, []);
 
   async function handleVend() {
@@ -89,13 +163,15 @@ export default function App() {
           <div className="w-px h-16 bg-zinc-300 my-4"></div>
 
           {/* Nav Menu */}
-          <nav className="flex flex-col items-center text-center gap-6 w-full">
+          <nav ref={navRef} className="flex flex-col items-center text-center gap-6 w-full">
             {/* Studio / Remix — Active */}
             <a
               href="#"
               className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              onMouseEnter={handleNavEnter}
+              onMouseLeave={handleNavLeave}
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              <span className="nav-arrow opacity-0 text-[#FF3300] text-xs">-&gt;</span>
               Studio / Remix
             </a>
 
@@ -103,8 +179,10 @@ export default function App() {
             <a
               href="#"
               className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              onMouseEnter={handleNavEnter}
+              onMouseLeave={handleNavLeave}
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              <span className="nav-arrow opacity-0 text-[#FF3300] text-xs">-&gt;</span>
               Soundpacks
             </a>
 
@@ -112,8 +190,10 @@ export default function App() {
             <a
               href="#"
               className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              onMouseEnter={handleNavEnter}
+              onMouseLeave={handleNavLeave}
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              <span className="nav-arrow opacity-0 text-[#FF3300] text-xs">-&gt;</span>
               Artist ID
             </a>
 
@@ -124,8 +204,10 @@ export default function App() {
             <a
               href="#"
               className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              onMouseEnter={handleNavEnter}
+              onMouseLeave={handleNavLeave}
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              <span className="nav-arrow opacity-0 text-[#FF3300] text-xs">-&gt;</span>
               Leaderboard
             </a>
 
@@ -133,18 +215,20 @@ export default function App() {
             <a
               href="#"
               className="group flex flex-col items-center gap-1 font-mono text-sm uppercase font-bold tracking-widest text-zinc-900 hover:text-[#FF3300] transition-colors"
+              onMouseEnter={handleNavEnter}
+              onMouseLeave={handleNavLeave}
             >
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#FF3300] text-xs">-&gt;</span>
+              <span className="nav-arrow opacity-0 text-[#FF3300] text-xs">-&gt;</span>
               Remix Trees
             </a>
           </nav>
         </aside>
 
         {/* CENTER CONTENT: Swiss Grid Layout */}
-        <section className="relative w-full h-full grid grid-cols-1 lg:grid-cols-12 grid-rows-[auto_auto_1fr] gap-0">
+        <section ref={gridRef} className="relative w-full h-full grid grid-cols-1 lg:grid-cols-12 grid-rows-[auto_auto_1fr] gap-0">
 
           {/* Top Navigation / Header Area */}
-          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-1.5 px-6 flex justify-between items-center relative bg-zinc-50/80 backdrop-blur-sm">
+          <header className="col-span-1 lg:col-span-12 border-b border-zinc-300 py-1.5 px-4 sm:px-6 flex justify-between items-center relative bg-zinc-50/80 backdrop-blur-sm">
             <div>
               <img src="/logos/superloop-text-bl-1.png" alt="Superloop.fm" className="h-6 md:h-10 object-contain" />
             </div>
@@ -163,10 +247,10 @@ export default function App() {
           </header>
 
           {/* ROW 1: Massive Title & Sub-grid */}
-          <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[50vh] border-b border-zinc-300">
+          <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[40vh] sm:min-h-[50vh] border-b border-zinc-300">
 
             {/* Left-Side Background Video */}
-            <div className="absolute left-0 top-0 w-[65%] h-full overflow-hidden pointer-events-none z-0">
+            <div className="absolute left-0 top-0 w-full sm:w-[65%] h-full overflow-hidden pointer-events-none z-0">
               <video
                 src="/videos/hero-bg.mp4"
                 muted
@@ -194,8 +278,8 @@ export default function App() {
             </div>
 
             {/* #1 TRACK: SYNTHETIC DREAMS — upscaled centerpiece */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] lg:w-[60%] lg:pr-12 z-30 group px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="absolute inset-0 sm:left-auto sm:right-0 sm:top-1/2 sm:-translate-y-1/2 w-full sm:w-[80%] lg:w-[60%] lg:pr-12 z-30 group px-4 sm:px-6 flex items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center w-full">
                 {/* Left: Text block */}
                 <div className="lg:col-span-7">
                   <div className="flex items-baseline gap-4 mb-4">
@@ -204,18 +288,18 @@ export default function App() {
                     </div>
                   </div>
 
-                  <h2 className={`text-[12vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-fuchsia-400 drop-shadow-[0_0_30px_rgba(232,121,249,0.9)]' : 'text-zinc-950'}`}>
+                  <h2 className={`text-[11vw] sm:text-[12vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-4 sm:mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-fuchsia-400 drop-shadow-[0_0_30px_rgba(232,121,249,0.9)]' : 'text-zinc-950'}`}>
                     SYNTHETIC<br />DREAMS
                   </h2>
 
-                  <div className="mt-12 flex flex-col items-start gap-1 font-mono text-sm tracking-widest uppercase">
+                  <div className="mt-6 sm:mt-12 flex flex-col items-start gap-1 font-mono text-xs sm:text-sm tracking-widest uppercase">
                     <span className="bg-zinc-900 text-white font-bold px-3 py-1.5 leading-none">Only 100 Pressed.</span>
-                    <span className="bg-zinc-900 text-zinc-300 px-3 py-1.5 leading-none">Only 1 can be yours. Remix Week Pass Included.</span>
+                    <span className="bg-zinc-900 text-zinc-300 px-3 py-1.5 leading-none text-[10px] sm:text-sm">Only 1 can be yours. Remix Week Pass Included.</span>
                   </div>
                 </div>
 
                 {/* Right: 3D tilt card — massive */}
-                <div className="lg:col-span-5">
+                <div className="lg:col-span-5 hidden sm:block">
                   <div
                     className="relative cursor-pointer transition-transform hover:-translate-y-1 duration-300"
                     onClick={() => setIsSyntheticLit(!isSyntheticLit)}
@@ -236,7 +320,7 @@ export default function App() {
           <div className="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh]">
 
             {/* Block A: Remix Week (Left) — bleeds into left margin */}
-            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[14rem] pl-[3rem] md:pl-[14rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
+            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[14rem] pl-[3rem] md:pl-[14rem] pr-4 sm:pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
               <div className="select-none">
                 {/* Glitch sliced typography */}
                 <div className="glitch-wrapper glitch-wrapper-pad2 mb-6">
@@ -273,7 +357,7 @@ export default function App() {
               </div>
 
               {/* Hardware Controls */}
-              <div className="flex items-center gap-4 mt-4">
+              <div className="flex items-center gap-4 mt-4 flex-wrap">
 
                 {/* Fader — short horizontal DJ-style */}
                 <div className="flex flex-col items-start gap-1">
@@ -332,11 +416,11 @@ export default function App() {
               </div>
 
               <div className="mt-auto pt-6 border-t border-white/10 flex items-center gap-3 animate-bounce">
-                <ArrowDown className="w-8 h-8 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.6)]" />
-                <span className="font-mono text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400 uppercase tracking-wider">
+                <ArrowDown className="w-6 h-6 sm:w-8 sm:h-8 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.6)]" />
+                <span className="font-mono text-xs sm:text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-orange-400 uppercase tracking-wider">
                   CLAIM YOUR FREE PACK &amp; REMIX PASS
                 </span>
-                <ArrowDown className="w-8 h-8 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.6)]" />
+                <ArrowDown className="w-6 h-6 sm:w-8 sm:h-8 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(232,121,249,0.6)]" />
               </div>
             </div>
 
@@ -392,7 +476,13 @@ export default function App() {
               {/* Vending Slots */}
               <div className="flex flex-col p-3 gap-2 flex-1">
                 {/* Pack 1 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button
+                  ref={el => { soundpackRefs.current[0] = el; }}
+                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all"
+                  onClick={() => setIsPlaying(p => !p)}
+                  onMouseEnter={() => handleSoundpackEnter(soundpackRefs.current[0])}
+                  onMouseLeave={() => handleSoundpackLeave(soundpackRefs.current[0])}
+                >
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
                     <Disc className="w-4 h-4 group-hover:animate-spin" />
@@ -405,7 +495,13 @@ export default function App() {
                 </button>
 
                 {/* Pack 2 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button
+                  ref={el => { soundpackRefs.current[1] = el; }}
+                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all"
+                  onClick={() => setIsPlaying(p => !p)}
+                  onMouseEnter={() => handleSoundpackEnter(soundpackRefs.current[1])}
+                  onMouseLeave={() => handleSoundpackLeave(soundpackRefs.current[1])}
+                >
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
                     <Mic2 className="w-4 h-4" />
@@ -418,7 +514,13 @@ export default function App() {
                 </button>
 
                 {/* Pack 3 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all" onClick={() => setIsPlaying(p => !p)}>
+                <button
+                  ref={el => { soundpackRefs.current[2] = el; }}
+                  className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-zinc-100 transition-all"
+                  onClick={() => setIsPlaying(p => !p)}
+                  onMouseEnter={() => handleSoundpackEnter(soundpackRefs.current[2])}
+                  onMouseLeave={() => handleSoundpackLeave(soundpackRefs.current[2])}
+                >
                   <div className="flex justify-between items-start mb-1">
                     <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
                     <Zap className="w-4 h-4" />
@@ -459,16 +561,16 @@ export default function App() {
         </section>
 
         {/* REMIX NOW: Full-width dark editorial block */}
-        <div className="col-span-full bg-neutral-950 border-t-2 border-zinc-300 py-8 px-8 md:px-12">
+        <div className="col-span-full bg-neutral-950 border-t-2 border-zinc-300 py-8 px-4 sm:px-8 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
             {/* COL 2: Glitch Image */}
             <div className="lg:col-span-5 flex flex-col gap-0 self-stretch">
-              <div className="relative h-full min-h-[32rem] overflow-hidden">
+              <div className="relative h-full min-h-[20rem] sm:min-h-[32rem] overflow-hidden">
                 <img
                   src="/images/sunset-vending.png"
                   alt="Sunset Vending Machine"
-                  className="w-full h-full object-contain object-right grayscale opacity-90"
+                  className="w-full h-full object-contain object-center sm:object-right grayscale opacity-90"
                 />
               </div>
             </div>
@@ -478,21 +580,21 @@ export default function App() {
 
               {/* Remix Now header */}
               <div className="border-l-2 border-white/50 pl-4">
-                <h2 className="text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
+                <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-4">
                   Remix<br />Now
                 </h2>
 
                 {/* Live Inventory Counter */}
                 <div className="mb-8 w-fit">
-                  <span className="font-mono text-xl font-bold tracking-widest text-zinc-300 drop-shadow-md">
-                    <span className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-orange-500 to-fuchsia-500 animate-[pulse_3s_ease-in-out_infinite] bg-[length:200%_auto]">
+                  <span className="font-mono text-base sm:text-xl font-bold tracking-widest text-zinc-300 drop-shadow-md">
+                    <span className="text-2xl sm:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-orange-500 to-fuchsia-500 animate-[pulse_3s_ease-in-out_infinite] bg-[length:200%_auto]">
                       47
                     </span> OF 100 RECORDS REMAINING
                   </span>
                 </div>
 
                 {/* "Break The Loop" email capture box */}
-                <div className="relative bg-gradient-to-br from-fuchsia-600 via-purple-600 to-orange-500 text-white p-6 shadow-[8px_8px_0px_white] max-w-md overflow-hidden">
+                <div className="relative bg-gradient-to-br from-fuchsia-600 via-purple-600 to-orange-500 text-white p-4 sm:p-6 shadow-[8px_8px_0px_white] w-full sm:max-w-md overflow-hidden">
                   {/* Grid / Dot Texture Overlay */}
                   <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJ मुआवजेKTI1NSwyNTUsMjU1LDAuMjUpIi8+PC9zdmc+')] opacity-40 z-0 pointer-events-none"></div>
                   <div className="relative z-10">
@@ -506,7 +608,7 @@ export default function App() {
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           exit={{ scale: 0, opacity: 0 }}
-                          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.8 }}
                           className={`text-center py-6 px-4 rounded-sm border-2 ${prize.tier === 1
                             ? 'bg-yellow-400/20 border-yellow-400 shadow-[0_0_40px_rgba(250,204,21,0.5)]'
                             : prize.tier === 2
@@ -627,7 +729,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-900 bg-black text-zinc-500 py-12 px-6">
+      <footer className="border-t border-zinc-900 bg-black text-zinc-500 py-12 px-4 sm:px-6">
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Footer Left - Links */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 font-mono text-xs text-center md:text-left">
