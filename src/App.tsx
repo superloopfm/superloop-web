@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from './lib/supabase';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -8,6 +10,14 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSyntheticLit, setIsSyntheticLit] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Vending Machine state
+  const [email, setEmail] = useState("");
+  const [vendState, setVendState] = useState<"idle" | "loading" | "won" | "already" | "error">("idle");
+  const [prize, setPrize] = useState<{ tier: number; label: string } | null>(null);
+
+  // Live countdown to midnight
+  const [countdown, setCountdown] = useState("");
 
   useEffect(() => {
     const vid = videoRef.current;
@@ -18,6 +28,47 @@ export default function App() {
       vid.pause();
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    function calcCountdown() {
+      const now = new Date();
+      const midnight = new Date(now);
+      midnight.setHours(24, 0, 0, 0);
+      const diff = midnight.getTime() - now.getTime();
+      const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+      const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+      const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+      setCountdown(`${h}:${m}:${s}`);
+    }
+    calcCountdown();
+    const id = setInterval(calcCountdown, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  async function handleVend() {
+    if (!email.trim()) return;
+    setVendState("loading");
+    try {
+      const { data, error } = await supabase.functions.invoke('vend', {
+        body: { email: email.trim() },
+      });
+      if (error) {
+        setVendState("error");
+        return;
+      }
+      if (data?.success) {
+        setPrize({ tier: data.tier, label: data.label });
+        setVendState("won");
+      } else if (data?.error === 'already_entered') {
+        setPrize(data.label ? { tier: data.tier, label: data.label } : null);
+        setVendState("already");
+      } else {
+        setVendState("error");
+      }
+    } catch {
+      setVendState("error");
+    }
+  }
   return (
     <body className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
 
@@ -388,7 +439,7 @@ export default function App() {
                   </div>
                   <h3 className="font-bold text-sm leading-tight uppercase mb-1 text-zinc-500">Secret_Stems_v2</h3>
                   <div className="flex justify-between items-end border-t border-dashed border-zinc-400 pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">LOCKED UNTIL 12AM</span>
+                    <span className="text-[9px] font-mono text-zinc-500">UNLOCKS IN {countdown}</span>
                     <span className="font-bold text-xs text-zinc-500">LOCKED</span>
                   </div>
                 </button>
@@ -449,14 +500,82 @@ export default function App() {
                     <div className="font-mono text-[9px] uppercase tracking-widest mb-1 opacity-80">SP SOUNDPACK</div>
                     <h3 className="font-black text-2xl uppercase leading-none tracking-tighter mb-2">Break<br />The Loop</h3>
                     <div className="font-mono text-[9px] mb-4 uppercase tracking-widest text-fuchsia-200">VOL.1 // REMIX EDITION</div>
-                    <input
-                      type="email"
-                      placeholder="YOUR EMAIL"
-                      className="w-full bg-black/40 text-white font-mono text-xs px-3 py-2 mb-2 border border-white/30 placeholder:text-white/60 outline-none focus:border-white transition-colors"
-                    />
-                    <button className="w-full bg-white text-black font-mono font-bold text-xs uppercase py-2 hover:bg-black hover:text-white transition-colors border-2 border-white hover:border-black">
-                      Claim Your Copy
-                    </button>
+                    <AnimatePresence mode="wait">
+                      {vendState === "won" && prize ? (
+                        <motion.div
+                          key="winner"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                          className={`text-center py-6 px-4 rounded-sm border-2 ${
+                            prize.tier === 1
+                              ? 'bg-yellow-400/20 border-yellow-400 shadow-[0_0_40px_rgba(250,204,21,0.5)]'
+                              : prize.tier === 2
+                              ? 'bg-purple-500/20 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.5)]'
+                              : 'bg-white/20 border-white shadow-[0_0_40px_rgba(255,255,255,0.4)]'
+                          }`}
+                        >
+                          <div className="font-mono text-[10px] uppercase tracking-widest mb-2 opacity-70">YOU WON</div>
+                          <div className="font-black text-3xl uppercase tracking-tighter leading-none">{prize.label}</div>
+                          <div className="font-mono text-[10px] mt-3 uppercase tracking-widest opacity-60">Tier {prize.tier} Prize</div>
+                        </motion.div>
+                      ) : vendState === "already" ? (
+                        <motion.div
+                          key="already"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0 }}
+                          className="text-center py-4"
+                        >
+                          <div className="font-mono text-sm text-fuchsia-200">
+                            You've already claimed your {prize?.label ?? 'prize'}!
+                          </div>
+                        </motion.div>
+                      ) : vendState === "error" ? (
+                        <motion.div
+                          key="error"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="text-center py-2"
+                        >
+                          <div className="font-mono text-xs text-red-400 mb-2">Something went wrong. Try again.</div>
+                          <button
+                            onClick={() => setVendState("idle")}
+                            className="w-full bg-white text-black font-mono font-bold text-xs uppercase py-2 border-2 border-white hover:bg-black hover:text-white transition-colors"
+                          >
+                            Retry
+                          </button>
+                        </motion.div>
+                      ) : (
+                        <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                          <input
+                            type="email"
+                            placeholder="YOUR EMAIL"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleVend()}
+                            disabled={vendState === "loading"}
+                            className="w-full bg-black/40 text-white font-mono text-xs px-3 py-2 mb-2 border border-white/30 placeholder:text-white/60 outline-none focus:border-white transition-colors disabled:opacity-50"
+                          />
+                          <button
+                            onClick={handleVend}
+                            disabled={vendState === "loading"}
+                            className="w-full bg-white text-black font-mono font-bold text-xs uppercase py-2 hover:bg-black hover:text-white transition-colors border-2 border-white hover:border-black disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {vendState === "loading" ? (
+                              <span className="inline-flex items-center gap-2">
+                                <span className="animate-spin inline-block w-3 h-3 border-2 border-black border-t-transparent rounded-full"></span>
+                                PROCESSING...
+                              </span>
+                            ) : (
+                              "Claim Your Copy"
+                            )}
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                   <div className="mt-3 text-center">
                     <p className="font-mono text-[8px] sm:text-[9px] text-white/50 leading-tight">
