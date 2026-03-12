@@ -439,7 +439,7 @@ export default function App() {
                   </div>
                   <h3 className="font-bold text-sm leading-tight uppercase mb-1 text-zinc-500">Secret_Stems_v2</h3>
                   <div className="flex justify-between items-end border-t border-dashed border-zinc-400 pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">UNLOCKS IN {countdown}</span>
+                    <span className="text-[9px] font-mono text-zinc-500">LOCKED UNTIL {countdown}</span>
                     <span className="font-bold text-xs text-zinc-500">LOCKED</span>
                   </div>
                 </button>
@@ -501,26 +501,27 @@ export default function App() {
                     <h3 className="font-black text-2xl uppercase leading-none tracking-tighter mb-2">Break<br />The Loop</h3>
                     <div className="font-mono text-[9px] mb-4 uppercase tracking-widest text-fuchsia-200">VOL.1 // REMIX EDITION</div>
                     <AnimatePresence mode="wait">
-                      {vendState === "won" && prize ? (
+                      {vendState === "won" && prize && (
                         <motion.div
                           key="winner"
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           exit={{ scale: 0, opacity: 0 }}
                           transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                          className={`text-center py-6 px-4 rounded-sm border-2 ${
-                            prize.tier === 1
+                          className={`text-center py-6 px-4 rounded-sm border-2 ${prize.tier === 1
                               ? 'bg-yellow-400/20 border-yellow-400 shadow-[0_0_40px_rgba(250,204,21,0.5)]'
                               : prize.tier === 2
-                              ? 'bg-purple-500/20 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.5)]'
-                              : 'bg-white/20 border-white shadow-[0_0_40px_rgba(255,255,255,0.4)]'
-                          }`}
+                                ? 'bg-purple-500/20 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.5)]'
+                                : 'bg-white/20 border-white shadow-[0_0_40px_rgba(255,255,255,0.4)]'
+                            }`}
                         >
                           <div className="font-mono text-[10px] uppercase tracking-widest mb-2 opacity-70">YOU WON</div>
                           <div className="font-black text-3xl uppercase tracking-tighter leading-none">{prize.label}</div>
                           <div className="font-mono text-[10px] mt-3 uppercase tracking-widest opacity-60">Tier {prize.tier} Prize</div>
                         </motion.div>
-                      ) : vendState === "already" ? (
+                      )}
+
+                      {vendState === "already" && (
                         <motion.div
                           key="already"
                           initial={{ opacity: 0, y: 10 }}
@@ -532,7 +533,9 @@ export default function App() {
                             You've already claimed your {prize?.label ?? 'prize'}!
                           </div>
                         </motion.div>
-                      ) : vendState === "error" ? (
+                      )}
+
+                      {vendState === "error" && (
                         <motion.div
                           key="error"
                           initial={{ opacity: 0 }}
@@ -548,34 +551,36 @@ export default function App() {
                             Retry
                           </button>
                         </motion.div>
-                      ) : (
-                        <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                          <input
-                            type="email"
-                            placeholder="YOUR EMAIL"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && handleVend()}
-                            disabled={vendState === "loading"}
-                            className="w-full bg-black/40 text-white font-mono text-xs px-3 py-2 mb-2 border border-white/30 placeholder:text-white/60 outline-none focus:border-white transition-colors disabled:opacity-50"
-                          />
-                          <button
-                            onClick={handleVend}
-                            disabled={vendState === "loading"}
-                            className="w-full bg-white text-black font-mono font-bold text-xs uppercase py-2 hover:bg-black hover:text-white transition-colors border-2 border-white hover:border-black disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            {vendState === "loading" ? (
-                              <span className="inline-flex items-center gap-2">
-                                <span className="animate-spin inline-block w-3 h-3 border-2 border-black border-t-transparent rounded-full"></span>
-                                PROCESSING...
-                              </span>
-                            ) : (
-                              "Claim Your Copy"
-                            )}
-                          </button>
-                        </motion.div>
                       )}
                     </AnimatePresence>
+
+                    {vendState !== "won" && vendState !== "already" && vendState !== "error" && (
+                      <div className="mt-2">
+                        <input
+                          type="email"
+                          placeholder="YOUR EMAIL"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && handleVend()}
+                          disabled={vendState === "loading"}
+                          className="w-full bg-black/40 text-white font-mono text-xs px-3 py-2 mb-2 border border-white/30 placeholder:text-white/60 outline-none focus:border-white transition-colors disabled:opacity-50"
+                        />
+                        <button
+                          onClick={handleVend}
+                          disabled={vendState === "loading" || !email.trim()}
+                          className="w-full bg-white text-black font-mono font-bold text-xs uppercase py-2 hover:bg-black hover:text-white transition-colors border-2 border-white hover:border-black disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {vendState === "loading" ? (
+                            <span className="inline-flex items-center gap-2">
+                              <span className="animate-spin inline-block w-3 h-3 border-2 border-black border-t-transparent rounded-full"></span>
+                              PROCESSING...
+                            </span>
+                          ) : (
+                            "Claim Your Copy"
+                          )}
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div className="mt-3 text-center">
                     <p className="font-mono text-[8px] sm:text-[9px] text-white/50 leading-tight">
