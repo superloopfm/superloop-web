@@ -70,8 +70,7 @@ export default function App() {
     }
   }
   return (
-    <body className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
-
+    <div className="bg-zinc-50 text-zinc-950 font-sans antialiased overflow-x-hidden selection:bg-zinc-900 selection:text-white">
       {/* Dither/Gradient Background Layer */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-100 via-zinc-200 to-zinc-300 opacity-80"></div>
@@ -509,10 +508,10 @@ export default function App() {
                           exit={{ scale: 0, opacity: 0 }}
                           transition={{ type: "spring", stiffness: 200, damping: 15 }}
                           className={`text-center py-6 px-4 rounded-sm border-2 ${prize.tier === 1
-                              ? 'bg-yellow-400/20 border-yellow-400 shadow-[0_0_40px_rgba(250,204,21,0.5)]'
-                              : prize.tier === 2
-                                ? 'bg-purple-500/20 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.5)]'
-                                : 'bg-white/20 border-white shadow-[0_0_40px_rgba(255,255,255,0.4)]'
+                            ? 'bg-yellow-400/20 border-yellow-400 shadow-[0_0_40px_rgba(250,204,21,0.5)]'
+                            : prize.tier === 2
+                              ? 'bg-purple-500/20 border-purple-400 shadow-[0_0_40px_rgba(168,85,247,0.5)]'
+                              : 'bg-white/20 border-white shadow-[0_0_40px_rgba(255,255,255,0.4)]'
                             }`}
                         >
                           <div className="font-mono text-[10px] uppercase tracking-widest mb-2 opacity-70">YOU WON</div>
@@ -646,6 +645,6 @@ export default function App() {
         </div>
       </footer>
 
-    </body>
+    </div>
   );
 }
