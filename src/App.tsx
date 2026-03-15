@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight, Download } from 'lucide-react';
+import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight, ArrowDown, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
@@ -154,8 +154,8 @@ export default function App() {
                     </div>
                   </div>
 
-                  <h2 className={`text-[12vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-[#FF3300] drop-shadow-[0_0_25px_rgba(255,51,0,0.8)]' : 'text-zinc-950'}`}>
-                    SYNTHETIC<br />DREAMS
+                  <h2 className={`text-[11vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-[#FF3300] drop-shadow-[0_0_25px_rgba(255,51,0,0.8)]' : 'text-zinc-950'}`}>
+                    THE NEW<br />REMIX<br />PLAYGROUND
                   </h2>
 
                   <div className="mt-12 flex flex-col items-start gap-1 font-mono text-sm tracking-widest uppercase">
@@ -281,9 +281,11 @@ export default function App() {
 
               </div>
 
-              <div className="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
-                <span className="font-mono text-xs text-neutral-500 uppercase tracking-wider">Remix Section Below</span>
-                <ArrowDownRight className="w-5 h-5 text-[#FF3300]" />
+              <div className="mt-auto pt-10 pb-4 flex flex-col items-center justify-center group overflow-visible">
+                <span className="font-mono text-sm font-bold text-[#FF3300] uppercase tracking-widest mb-4 animate-pulse text-center">
+                  Unlock Founders Pack<br />Below
+                </span>
+                <ArrowDown className="w-16 h-16 lg:w-20 lg:h-20 text-[#FF3300] animate-bounce drop-shadow-[0_0_15px_rgba(255,51,0,0.6)]" strokeWidth={3} />
               </div>
             </div>
 
@@ -296,15 +298,12 @@ export default function App() {
               ></div>
 
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start">
-                  <div className="bg-zinc-900 border border-zinc-700 px-3 py-1 shadow-sm text-white">
-                    <span className="text-xs font-mono font-semibold">REVIEW: PRO-1</span>
-                  </div>
-                </div>
+                {/* Replaced 'REVIEW: PRO-1' box with empty space for padding */}
+                <div className="flex justify-between items-start"></div>
 
                 <div className="flex-1 flex items-center justify-center py-4">
-                  {/* CORE_01 Record Display — full-bleed, unconstrained */}
-                  <div className="w-full relative">
+                  {/* CORE_01 Record Display — scaled down to increase padding */}
+                  <div className="w-[60%] relative mx-auto">
                     <video
                       ref={videoRef}
                       src="/videos/ronin-record.mp4"
@@ -320,12 +319,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="bg-zinc-900/90 text-zinc-300 backdrop-blur border border-zinc-700 p-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-tight mb-1 text-zinc-100">Hands-On Verdict</h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
-                    "A masterclass in subtractive synthesis. The new filter topology creates harmonics previously impossible in this form factor."
-                  </p>
-                </div>
+                {/* Replaced 'Hands-On Verdict' box with empty space for padding */}
               </div>
             </div>
 
