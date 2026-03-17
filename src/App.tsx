@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDownRight, ArrowDown, Download } from 'lucide-react';
+import { QrCode, Package, Disc3, Disc, Mic2, Zap, Lock, ArrowDown, Download } from 'lucide-react';
 
 export default function App() {
   const [mix, setMix] = useState(0);
   const [pad1, setPad1] = useState(false);
   const [pad2, setPad2] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSyntheticLit, setIsSyntheticLit] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -115,24 +114,24 @@ export default function App() {
           {/* ROW 1: Massive Title & Sub-grid */}
           <div className="col-span-1 lg:col-span-12 relative overflow-hidden min-h-[50vh] border-b border-zinc-300">
 
-            {/* Left-Side Background Video */}
-            <div className="absolute left-0 top-0 w-[65%] h-full overflow-hidden pointer-events-none z-0">
+            {/* Right-Side Background Video */}
+            <div className="absolute right-0 top-0 w-full lg:w-[95%] h-full overflow-hidden pointer-events-none z-0">
               <video
                 src="/videos/hero-bg.mp4"
                 muted
                 loop
                 autoPlay
                 playsInline
-                className="w-full h-full object-cover opacity-40"
+                className="w-full h-full object-cover opacity-30"
               />
               {/* Grid / Dot Filter Overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
-              {/* Right edge fade-out gradient */}
-              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-zinc-50 to-transparent"></div>
+              {/* Left edge fade-out gradient */}
+              <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-zinc-50 to-transparent"></div>
             </div>
 
             {/* Background Wireframe Render */}
-            <div className="absolute -right-20 top-0 w-3/4 h-full opacity-10 pointer-events-none">
+            <div className="absolute -left-20 top-0 w-3/4 h-full opacity-10 pointer-events-none">
               <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                 <defs>
                   <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -143,37 +142,38 @@ export default function App() {
               </svg>
             </div>
 
-            {/* #1 TRACK: SYNTHETIC DREAMS — upscaled centerpiece */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[80%] lg:w-[60%] lg:pr-12 z-30 group px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                {/* Left: Text block */}
-                <div className="lg:col-span-7">
-                  <div className="flex items-baseline gap-4 mb-4">
-                    <div className="bg-[#FF5F00] text-black font-mono text-xs font-bold px-3 py-1 uppercase rotate-1 select-none">
-                      Current Reign
-                    </div>
-                  </div>
+            {/* #1 TRACK: TITLES */}
+            <div className="absolute left-0 lg:left-[5%] xl:left-[8%] top-[45%] -translate-y-1/2 w-full lg:w-[85%] lg:pl-12 z-30 group px-6">
+              <div className="flex flex-col items-start text-left w-full">
 
-                  <h2 className={`text-[11vw] lg:text-[7vw] leading-[0.85] font-black tracking-tighter mb-6 transition-all duration-300 ${isSyntheticLit ? 'text-[#FF3300] drop-shadow-[0_0_25px_rgba(255,51,0,0.8)]' : 'text-zinc-950'}`}>
-                    THE NEW<br />REMIX<br />PLAYGROUND
-                  </h2>
-
-                  <div className="mt-12 flex flex-col items-start gap-1 font-mono text-sm tracking-widest uppercase">
-                    <span className="bg-zinc-900 text-white font-bold px-3 py-1.5 leading-none">Limited Edition of 100</span>
-                    <span className="bg-zinc-900 text-zinc-300 px-3 py-1.5 leading-none">Digital + Physical. Remix Week Pass Included.</span>
+                <div className="flex items-baseline gap-4 mb-4">
+                  <div className="bg-[#FF5F00] text-black font-mono text-sm md:text-base font-bold px-4 py-1.5 uppercase -rotate-1 select-none flex items-center gap-2 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                    <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+                    FOUNDERS EDITION — 100 RECORDS ONLY
                   </div>
                 </div>
 
-                {/* Right: 3D tilt card — massive */}
-                <div className="lg:col-span-5">
-                  <div
-                    className="relative cursor-pointer transition-transform hover:-translate-y-1 duration-300"
-                    onClick={() => setIsSyntheticLit(!isSyntheticLit)}
-                  >
-                    <div className="aspect-square w-full relative rounded-2xl overflow-hidden shadow-2xl">
-                      <img src="/images/dreamwarden-record.jpg" className="absolute inset-0 w-full h-full object-contain z-10 brightness-75 hover:brightness-110 transition-all duration-300" alt="Record" />
-                      <img src="/images/dreamwarden-spine.png" className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none" alt="Spine Overlay" />
+                <h2 className={`text-[15vw] lg:text-[7vw] leading-[0.80] font-black tracking-tighter mb-8 transition-all duration-300 text-zinc-950 drop-shadow-md`}>
+                  THE REMIX<br />PLAYGROUND
+                </h2>
+
+                <div className="mt-6 flex flex-col items-start gap-1 font-mono text-base md:text-lg tracking-widest uppercase shadow-xl">
+                  <span className="bg-zinc-900 text-white font-bold px-4 py-2 leading-none">Collect Limited Soundpacks</span>
+                  <span className="bg-zinc-900 text-zinc-300 px-4 py-2 leading-none">Remix Your Way. Get Published Everywhere.</span>
+                </div>
+
+                <div className="mt-12 flex flex-col items-start w-full relative z-40">
+                  <a href="#vending" className="inline-flex items-center gap-4 bg-transparent text-zinc-950 px-8 py-4 font-mono font-black text-sm uppercase tracking-widest hover:bg-[#FF3300] hover:text-white transition-colors border-2 border-zinc-950 hover:border-[#FF3300] shadow-[4px_4px_0_#FF3300] hover:shadow-[6px_6px_0_black] bg-white duration-300 group">
+                    CLAIM YOUR RECORD
+                    <ArrowDown className="w-5 h-5 group-hover:animate-bounce" />
+                  </a>
+
+                  {/* Cool connecting line pointing downwards towards Kaidan record */}
+                  <div className="absolute top-12 left-[30%] lg:left-[55%] xl:left-[60%] h-[30vh] hidden lg:flex flex-col items-center opacity-60 pointer-events-none mt-4">
+                    <div className="w-1 h-[25vh] bg-gradient-to-b from-[#FF3300] via-[#FF3300]/50 to-transparent relative overflow-hidden">
+                      <div className="absolute top-0 left-0 w-full h-1/4 bg-white animate-[slideDown_2s_ease-in-out_infinite]"></div>
                     </div>
+                    <ArrowDown className="text-[#FF3300] w-8 h-8 animate-bounce mt-2 text-opacity-30" />
                   </div>
                 </div>
               </div>
@@ -185,8 +185,118 @@ export default function App() {
           {/* ROW 2: Asymmetrical Content Blocks */}
           <div className="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh]">
 
-            {/* Block A: Remix Week (Left) — bleeds into left margin */}
-            <div className="col-span-1 lg:col-span-5 border-r border-zinc-300 -ml-[3rem] md:-ml-[14rem] pl-[3rem] md:pl-[14rem] pr-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
+            {/* Block B: Product Showcase (Center-Right -> Now Left) */}
+            <div className="col-span-1 lg:col-span-3 border-r lg:border-r border-zinc-800 bg-zinc-950 p-6 relative overflow-hidden group">
+              {/* Dotted Grid BG */}
+              <div
+                className="absolute inset-0"
+                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+              ></div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                {/* Replaced 'REVIEW: PRO-1' box with empty space for padding */}
+                <div className="flex justify-between items-start"></div>
+
+                <div className="flex-1 flex items-center justify-center py-4">
+                  {/* CORE_01 Record Display — scaled down to increase padding */}
+                  <div className="w-[80%] lg:w-[60%] relative mx-auto">
+                    <video
+                      ref={videoRef}
+                      src="/videos/ronin-record.mp4"
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                    {/* CORE_01 floating label */}
+                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
+                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Replaced 'Hands-On Verdict' box with empty space for padding */}
+              </div>
+            </div>
+
+            {/* Block C: Supply Depot (Right -> Now Middle) */}
+            <div className="col-span-1 lg:col-span-4 flex flex-col bg-zinc-100 overflow-y-auto border-r border-zinc-300">
+              {/* Header */}
+              <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
+                <div className="flex items-center gap-2">
+                  <Package className="w-4 h-4" />
+                  <span className="font-mono text-sm font-bold uppercase tracking-wide">Soundpack_Content</span>
+                </div>
+                <span className="text-[10px] font-mono border border-white/30 px-1">V.4.0</span>
+              </div>
+
+              {/* Vending Slots */}
+              <div className="flex flex-col p-3 gap-2 flex-1">
+                {/* Pack 1 */}
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
+                    <Disc className="w-4 h-4 group-hover:animate-spin" />
+                  </div>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">170BPM / DISTORTED</span>
+                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  </div>
+                </button>
+
+                {/* Pack 2 */}
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
+                    <Mic2 className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">STUTTER FX</span>
+                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  </div>
+                </button>
+
+                {/* Pack 3 */}
+                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
+                    <Zap className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">HARD CLIPPING</span>
+                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
+                  </div>
+                </button>
+
+                {/* Pack 4 — locked */}
+                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="bg-zinc-400 text-white text-[9px] px-1 font-mono">C-09</span>
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 text-zinc-500">Secret_Stems_v2</h3>
+                  <div className="flex justify-between items-end border-t border-dashed border-zinc-400 pt-1 mt-1">
+                    <span className="text-[9px] font-mono text-zinc-500">LOCKED UNTIL 12AM</span>
+                    <span className="font-bold text-xs text-zinc-500">LOCKED</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Bottom Ad */}
+              <div className="p-4 bg-orange-600 text-black mt-auto">
+                <h4 className="font-mono font-black text-xl uppercase mb-1">Join The Noise</h4>
+                <p className="text-[10px] font-mono mb-3 border-b border-black pb-2">Submit your remix before the timer hits zero.</p>
+                <button className="w-full bg-black text-white py-2 font-mono font-bold text-xs uppercase hover:bg-white hover:text-black transition-colors border-2 border-black">
+                  Upload Track
+                </button>
+              </div>
+            </div>
+
+            {/* Block A: Remix Week (Left -> Now Right) — bleeding margin pulled from the other side now */}
+            <div className="col-span-1 lg:col-span-5 border-l border-zinc-300 -mr-[3rem] md:-mr-[14rem] pr-[3rem] md:pr-[14rem] pl-6 py-6 flex flex-col justify-between bg-[#050505] text-white overflow-hidden">
               <div className="select-none">
                 {/* Glitch sliced typography */}
                 <div className="glitch-wrapper glitch-wrapper-pad2 mb-6">
@@ -289,115 +399,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Block B: Product Showcase (Center-Right) */}
-            <div className="col-span-1 lg:col-span-3 border-r border-zinc-800 bg-zinc-950 p-6 relative overflow-hidden group">
-              {/* Dotted Grid BG */}
-              <div
-                className="absolute inset-0"
-                style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px' }}
-              ></div>
-
-              <div className="relative z-10 flex flex-col h-full">
-                {/* Replaced 'REVIEW: PRO-1' box with empty space for padding */}
-                <div className="flex justify-between items-start"></div>
-
-                <div className="flex-1 flex items-center justify-center py-4">
-                  {/* CORE_01 Record Display — scaled down to increase padding */}
-                  <div className="w-[60%] relative mx-auto">
-                    <video
-                      ref={videoRef}
-                      src="/videos/ronin-record.mp4"
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-contain"
-                    />
-                    {/* CORE_01 floating label */}
-                    <div className="absolute bottom-2 left-0 right-0 flex flex-col items-center pointer-events-none">
-                      <span className="font-mono text-xs font-bold tracking-tighter text-white/70 bg-black/50 px-2 py-0.5">CORE_01</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Replaced 'Hands-On Verdict' box with empty space for padding */}
-              </div>
-            </div>
-
-            {/* Block C: Supply Depot */}
-            <div className="col-span-1 lg:col-span-4 flex flex-col bg-zinc-100 overflow-y-auto">
-              {/* Header */}
-              <div className="p-3 border-b border-black bg-black text-white flex justify-between items-center sticky top-0 z-10">
-                <div className="flex items-center gap-2">
-                  <Package className="w-4 h-4" />
-                  <span className="font-mono text-sm font-bold uppercase tracking-wide">Soundpack_Content</span>
-                </div>
-                <span className="text-[10px] font-mono border border-white/30 px-1">V.4.0</span>
-              </div>
-
-              {/* Vending Slots */}
-              <div className="flex flex-col p-3 gap-2 flex-1">
-                {/* Pack 1 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-01</span>
-                    <Disc className="w-4 h-4 group-hover:animate-spin" />
-                  </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Acid_Washed_Breakbeats</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">170BPM / DISTORTED</span>
-                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
-                  </div>
-                </button>
-
-                {/* Pack 2 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono">A-02</span>
-                    <Mic2 className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Vocal_Chops_Glitch</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">STUTTER FX</span>
-                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
-                  </div>
-                </button>
-
-                {/* Pack 3 */}
-                <button className="group w-full text-left bg-white border-2 border-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-[#00FF41] hover:border-black transition-all" onClick={() => setIsPlaying(p => !p)}>
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="bg-black text-white text-[9px] px-1 font-mono">B-01</span>
-                    <Zap className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1">Industrial_Kicks</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-black pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">HARD CLIPPING</span>
-                    <span className="font-bold text-xs group-hover:text-orange-600">DOWNLOAD</span>
-                  </div>
-                </button>
-
-                {/* Pack 4 — locked */}
-                <button className="group w-full text-left bg-zinc-200 border-2 border-zinc-400 p-3 opacity-70 cursor-not-allowed">
-                  <div className="flex justify-between items-start mb-1">
-                    <span className="bg-zinc-400 text-white text-[9px] px-1 font-mono">C-09</span>
-                    <Lock className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-bold text-sm leading-tight uppercase mb-1 text-zinc-500">Secret_Stems_v2</h3>
-                  <div className="flex justify-between items-end border-t border-dashed border-zinc-400 pt-1 mt-1">
-                    <span className="text-[9px] font-mono text-zinc-500">LOCKED UNTIL 12AM</span>
-                    <span className="font-bold text-xs text-zinc-500">LOCKED</span>
-                  </div>
-                </button>
-              </div>
-
-              {/* Bottom Ad */}
-              <div className="p-4 bg-orange-600 text-black mt-auto">
-                <h4 className="font-mono font-black text-xl uppercase mb-1">Join The Noise</h4>
-                <p className="text-[10px] font-mono mb-3 border-b border-black pb-2">Submit your remix before the timer hits zero.</p>
-                <button className="w-full bg-black text-white py-2 font-mono font-bold text-xs uppercase hover:bg-white hover:text-black transition-colors border-2 border-black">
-                  Upload Track
-                </button>
-              </div>
-            </div>
 
           </div>
 
