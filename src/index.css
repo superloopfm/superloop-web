@@ -1,157 +1,114 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Superloop.fm — Global Styles (Clean Modern)
+   ============================================================ */
+
 @theme {
-  --color-loop-black: #000000;
-  --color-loop-white: #FFFFFF;
-  --color-loop-orange: #FF5F00;
-  --color-loop-yellow: #FFD600;
-  --color-loop-gray: #111111;
-  --color-loop-metal: #2A2A2A;
-  --color-blueprint-blue: #050A14;
-  --color-neon-blue: #0044FF;
+  /* Colors — clean, modern palette */
+  --color-brand-accent: #FFFFFF;
+  --color-brand-black: #09090B;
+  --color-brand-dark: #111113;
+  --color-brand-darker: #0C0C0E;
+  --color-brand-surface: #18181B;
+  --color-brand-border: #27272A;
+  --color-brand-muted: #71717A;
+  --color-brand-highlight: #E4E4E7;
 
-  --animate-pulse-fast: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-marquee: marquee 20s linear infinite;
-  --animate-flicker: flicker 0.1s infinite;
+  /* Fonts */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Animations */
   --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s ease-in-out infinite;
 }
 
-@keyframes marquee {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.9; }
-}
+/* ============================================================
+   Keyframes
+   ============================================================ */
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes textScan {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 8px; }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
+
+@keyframes morphGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: #09090B;
+    color: #FAFAFA;
   }
 
-  ::-webkit-scrollbar { width: 0px; background: transparent; }
+  body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar { width: 6px; background: #09090B; }
+  ::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3F3F46; }
+
+  ::selection {
+    background: #fff;
+    color: #000;
+  }
 }
 
+/* ============================================================
+   Utility Classes
+   ============================================================ */
+
 @layer utilities {
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+
+  .dot-grid {
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
+  /* --- Font Utilities --- */
 
-  .phosphor-grid {
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    pointer-events: none;
-  }
-  
-  .crt-grain {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    opacity: 0.03;
-    background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E');
+  .font-display {
+    font-family: var(--font-display);
   }
 
-  .analyzer-text {
-    background: linear-gradient(180deg, #fff 0%, #fff 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 100%);
-    background-size: 100% 4px;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textScan 0.5s linear infinite;
+  .font-mono {
+    font-family: var(--font-mono);
   }
 
-  .coin-shine {
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8) 0%, transparent 20%),
-    conic-gradient(from 0deg, #666, #fff, #666, #fff, #666);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.1);
+  /* --- Subtle glow --- */
+
+  .glow-white {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.04);
   }
 
-  .brushed-metal {
-    background-color: #1a1a1a;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 0h100v1H0z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
-    background-size: 10px 10px;
-    box-shadow: inset 2px 2px 5px rgba(255,255,255,0.05), inset -2px -2px 5px rgba(0,0,0,0.8);
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.08);
   }
 
-  .blueprint-grid {
-    background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+  .glow-red {
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.08);
   }
 
-  .bg-grid-dark {
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  }
+  /* --- Legacy: Fader Thumb (for V1 page) --- */
 
-  .skeuo-card-dark {
-    background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
-    box-shadow:
-      0px 0px 0px 1px rgba(255,255,255,0.05),
-      0px 1px 2px rgba(0,0,0,0.5),
-      inset 0px 1px 0px rgba(255,255,255,0.05);
-  }
-
-  /* Glitch sliced typography — from REMIX WEEK prototype */
-  .glitch-wrapper {
-    position: relative;
-    display: inline-block;
-    mix-blend-mode: exclusion;
-  }
-  .glitch-base {
-    position: relative;
-    font-size: clamp(1.5rem, 4vw, 5vw);
-    line-height: 0.8;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    opacity: 0; /* spacer only */
-  }
-  .glitch-layer {
-    display: block;
-    font-size: clamp(1.5rem, 4vw, 5vw);
-    line-height: 0.8;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    color: white;
-  }
-  .slice-top {
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    transform: translateX(calc(3px + 20px * var(--mix, 0)));
-    transition: transform 0.05s linear;
-  }
-  .slice-mid {
-    clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%);
-    transform: translateX(calc(-2px - 20px * var(--mix, 0)));
-    filter: drop-shadow(3px 0 0 rgba(255, 0, 0, 0.6));
-    transition: transform 0.05s linear;
-  }
-  .slice-bot {
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    transform: translateX(calc(2px + 15px * var(--mix, 0)));
-    filter: drop-shadow(-2px 0 0 rgba(255, 255, 0, 0.5));
-    transition: transform 0.05s linear;
-  }
-
-  /* Fader thumb styling */
   .fader-input::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
@@ -172,44 +129,5 @@
     border: 1px solid #666;
     border-radius: 2px;
     cursor: grab;
-  }
-
-  /* Pad 1: invert the remix image aggressively */
-  .remix-img-pad {
-    filter:
-      hue-rotate(calc(180deg * var(--mix, 0)))
-      contrast(calc(100% + 50% * var(--mix, 0)))
-      grayscale(calc(1 - 1 * var(--mix, 0)))
-      invert(calc(1 * var(--pad1, 0)));
-  }
-
-  /* Pad 2: scale the glitch typography */
-  .glitch-wrapper-pad2 {
-    transform: scale(calc(1 + 0.2 * var(--pad2, 0)));
-    transition: transform 0.05s linear;
-  }
-
-  .remix-week-slice {
-    position: relative;
-    display: inline-block;
-    line-height: 0.85;
-  }
-  .remix-week-slice::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 3px;
-    top: 0;
-    color: #FF3300;
-    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
-    overflow: hidden;
-  }
-  .remix-week-slice::after {
-    content: attr(data-text);
-    position: absolute;
-    left: -3px;
-    top: 0;
-    color: #0044FF;
-    clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
-    overflow: hidden;
   }
 }
